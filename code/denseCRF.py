@@ -69,12 +69,16 @@ def denseCRF(image, final_probabilities):
     return res,Q
 
 
-def getImageList(input_folder='/home/yzm/shenzhenyuan/AI/projects/koutou'):
+def getImageList(input_folder='/home/yzm/shenzhenyuan/AI/projects/koutou', output_file='input/expo.txt'):
     imgList = []
     for root, dirs, files in os.walk(input_folder):
         for file in files:
             if file.endswith('jpg'):
                 imgList.append(os.path.join(root,file))
+
+    with open(output_file, 'w') as f:
+        for i in imgList:
+            f.write(i + '\n')
     return imgList
 
 def cropHead(Q, img):
@@ -88,8 +92,8 @@ def cropHead(Q, img):
     return img_rgba
 
 def main():
-    imgList = getImageList(input_folder='/home/jin/shenzhenyuan/head-segmentation/input/test')
-
+    imgList = getImageList(input_folder='/home/jin/shenzhenyuan/head-segmentation/input/test',
+                           output_file='/home/jin/shenzhenyuan/head-segmentation/input/testSet.txt')
     for img_path in imgList:
         img = cv2.imread('{}'.format(img_path))
         if img_path[:img_path.rfind('.')].endswith('png'):

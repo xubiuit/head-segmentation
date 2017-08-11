@@ -4,9 +4,15 @@ import cv2
 import imutils
 import keras.backend as K
 # import matplotlib.pylab as plt
+import scipy.stats as stats
 
-ORIG_WIDTH = 1918
-ORIG_HEIGHT = 1280
+import pydensecrf.densecrf as dcrf
+
+from pydensecrf.utils import compute_unary, create_pairwise_bilateral, \
+    create_pairwise_gaussian, softmax_to_unary, unary_from_softmax
+
+ORIG_WIDTH = 600 #250 # 600
+ORIG_HEIGHT = 800 #250 # 800
 
 def comp_mean(imglist):
     mean = [0, 0, 0]
@@ -131,6 +137,17 @@ def randomHorizontalFlip(image, mask, u=0.5):
 
     return image, mask
 
+
+def randomGammaCorrection(image):
+    lower = 0.6
+    upper = 1.2
+    mu = 1
+    sigma = 0.2
+    alpha = stats.truncnorm((lower-mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma)
+    image = (pow(image/255.0, alpha.rvs(1)[0]) * 255).astype(np.uint8)
+    return image
+
+
 # def rle(img):
 #     '''
 #     img: numpy array, 1 - mask, 0 - background
@@ -178,7 +195,7 @@ def dice_loss(y_true, y_pred):
     y_true_f = K.flatten(y_true)
     y_pred_f = K.flatten(y_pred)
     intersection = K.sum(y_true_f * y_pred_f)
-    return (2. * intersection + smooth) / (K.sum(y_true_f) + K.sum(y_pred_f) + smooth)
+    return 1 - (2. * intersection + smooth) / (K.sum(y_true_f) + K.sum(y_pred_f) + smooth)
 
 def get_score(train_masks, avg_masks, thr):
     d = 0.0
@@ -198,13 +215,22 @@ def get_result(imgs, thresh):
         result.append(cv2.resize(img, (1918, 1280), interpolation=cv2.INTER_LINEAR))
     return result
 
-def get_final_mask(preds, thresh=0.5):
+def get_final_mask(preds, thresh=0.5, apply_crf=False, images=None):
     result = []
-    for pred in preds:
+    probs = []
+    for i in range(len(preds)):
+        pred = preds[i]
+        image = images[i]
         prob = cv2.resize(pred, (ORIG_WIDTH, ORIG_HEIGHT))
-        mask = prob > thresh
+        probs.append(prob)
+        if apply_crf and image is not None:
+            prob = np.dstack((prob,) * 2)
+            prob[..., 0] = 1 - prob[..., 1]
+            mask, _ = denseCRF(image, prob)
+        else:
+            mask = prob > thresh
         result.append(mask)
-    return result
+    return result, probs
 
 def find_best_seg_thr(masks_gt, masks_pred):
     best_score = 0
@@ -220,6 +246,59 @@ def find_best_seg_thr(masks_gt, masks_pred):
     print('Best score: {} Best thr: {}'.format(best_score, best_thr))
     return best_score, best_thr
 
+
+def denseCRF(image, final_probabilities):
+
+    # softmax = final_probabilities.squeeze()
+
+    softmax = final_probabilities.transpose((2, 0, 1))
+
+    # The input should be the negative of the logarithm of probability values
+    # Look up the definition of the softmax_to_unary for more information
+    unary = unary_from_softmax(softmax)
+
+    # The inputs should be C-continious -- we are using Cython wrapper
+    unary = np.ascontiguousarray(unary)
+
+    d = dcrf.DenseCRF2D(image.shape[1], image.shape[0], 2)
+    # d = dcrf.DenseCRF(image.shape[0] * image.shape[1], 2)
+
+    d.setUnaryEnergy(unary)
+
+
+    # # This potential penalizes small pieces of segmentation that are
+    # # spatially isolated -- enforces more spatially consistent segmentations
+    # feats = create_pairwise_gaussian(sdims=(3, 3), shape=image.shape[:2])
+    #
+    # d.addPairwiseEnergy(feats, compat=3,
+    #                     kernel=dcrf.DIAG_KERNEL,
+    #                     normalization=dcrf.NORMALIZE_SYMMETRIC)
+    #
+    # # This creates the color-dependent features --
+    # # because the segmentation that we get from CNN are too coarse
+    # # and we can use local color features to refine them
+    # feats = create_pairwise_bilateral(sdims=(80, 80), schan=(13, 13, 13),
+    #                                    img=image, chdim=2)
+    #
+    # d.addPairwiseEnergy(feats, compat=10,
+    #                      kernel=dcrf.DIAG_KERNEL,
+    #                      normalization=dcrf.NORMALIZE_SYMMETRIC)
+
+    # d.addPairwiseGaussian(sxy=3, compat=3)
+    d.addPairwiseBilateral(sxy=50, srgb=13, rgbim=image, compat=3)
+    Q = d.inference(5)
+
+    res = np.argmax(Q, axis=0).reshape((image.shape[0], image.shape[1]))
+
+    # cmap = plt.get_cmap('bwr')
+    #
+    # f, (ax1, ax2) = plt.subplots(1, 2, sharey=True)
+    # ax1.imshow(res, vmax=1.5, vmin=-0.4, cmap=cmap)
+    # ax1.set_title('Segmentation with CRF post-processing')
+    # probability_graph = ax2.imshow(np.dstack((final_probabilities[:,:,0],)*3))
+    # ax2.set_title('Original Prediction Mask')
+    # plt.show()
+    return res,Q
 
 def draw(img, mask):
     img_masked = cv2.bitwise_and(img, img, mask=mask)

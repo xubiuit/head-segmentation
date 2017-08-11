@@ -32,7 +32,7 @@ OUTPUT_PATH = '../output/'
 
 
 class HeadSeg():
-    def __init__(self, input_dim=512, batch_size=4, epochs=100, learn_rate=1e-3, nb_classes=2):
+    def __init__(self, input_dim=512, batch_size=5, epochs=100, learn_rate=1e-2, nb_classes=2):
         self.input_dim = input_dim
         self.batch_size = batch_size
         self.epochs = epochs
@@ -48,6 +48,7 @@ class HeadSeg():
         self.load_data()
         self.factor = 1
         self.train_with_all = False
+        self.apply_crf = False
 
     def load_data(self):
         ids_train = []
@@ -100,8 +101,9 @@ class HeadSeg():
                         img, mask = randomShiftScaleRotate(img, mask,
                                                            shift_limit=(-0.0625, 0.0625),
                                                            scale_limit=(-0.125, 0.125),
-                                                           rotate_limit=(-0.2, 0.2))
+                                                           rotate_limit=(-0, 0))
                         img, mask = randomHorizontalFlip(img, mask)
+                        img = randomGammaCorrection(img)
                         if self.factor != 1:
                             img = cv2.resize(img, (self.input_dim/self.factor, self.input_dim/self.factor), interpolation=cv2.INTER_LINEAR)
                         # draw(img, mask)
@@ -119,7 +121,7 @@ class HeadSeg():
 
                     x_batch = np.array(x_batch, np.float32) / 255.0
                     y_batch = np.array(y_batch, np.float32)
-                    yield x_batch, y_batch
+                    yield x_batch, [y_batch, y_batch]
 
         def valid_generator():
             while True:
@@ -148,7 +150,7 @@ class HeadSeg():
 
                     x_batch = np.array(x_batch, np.float32) / 255.0
                     y_batch = np.array(y_batch, np.float32)
-                    yield x_batch, y_batch
+                    yield x_batch, [y_batch, y_batch]
 
 
         # opt  = optimizers.SGD(lr=self.learn_rate, momentum=0.9)
@@ -156,12 +158,12 @@ class HeadSeg():
         #                   optimizer=opt,
         #                   metrics=[dice_loss])
 
-        # self.model.compile(optimizer=optimizers.SGD(lr=self.learn_rate, momentum=0.9),
-        #                    loss='binary_crossentropy',
-        #                    metrics=[dice_loss])
+        self.model.compile(optimizer=optimizers.SGD(lr=self.learn_rate, momentum=0.9),
+                           loss=['binary_crossentropy', dice_loss],
+                           metrics=[dice_loss])
 
         callbacks = [EarlyStopping(monitor='val_loss',
-                                       patience=4,
+                                       patience=5,
                                        verbose=1,
                                        min_delta=1e-4),
                     ReduceLROnPlateau(monitor='val_loss',
@@ -178,27 +180,27 @@ class HeadSeg():
         self.model.fit_generator(
             generator=train_generator(),
             steps_per_epoch=math.ceil(nTrain / float(self.batch_size)),
-            epochs=self.epochs,
+            epochs=10,
             verbose=2,
             callbacks=callbacks,
             validation_data=valid_generator(),
             validation_steps=math.ceil(nValid / float(self.batch_size)))
 
 
-        # opt  = optimizers.SGD(lr=0.1*self.learn_rate, momentum=0.9)
-        # self.model.compile(loss='binary_crossentropy', # We NEED binary here, since categorical_crossentropy l1 norms the output before calculating loss.
-        #                   optimizer=opt,
-        #                   metrics=[dice_loss])
-        #
-        #
-        # self.model.fit_generator(
-        #     generator=train_generator(),
-        #     steps_per_epoch=math.ceil(nTrain / float(self.batch_size)),
-        #     epochs=self.epochs,
-        #     verbose=2,
-        #     callbacks=callbacks,
-        #     validation_data=valid_generator(),
-        #     validation_steps=math.ceil(nValid / float(self.batch_size)))
+        opt  = optimizers.SGD(lr=0.1*self.learn_rate, momentum=0.9)
+        self.model.compile(loss=['binary_crossentropy', dice_loss], # We NEED binary here, since categorical_crossentropy l1 norms the output before calculating loss.
+                          optimizer=opt,
+                          metrics=[dice_loss])
+
+
+        self.model.fit_generator(
+            generator=train_generator(),
+            steps_per_epoch=math.ceil(nTrain / float(self.batch_size)),
+            epochs=self.epochs - 10,
+            verbose=2,
+            callbacks=callbacks,
+            validation_data=valid_generator(),
+            validation_steps=math.ceil(nValid / float(self.batch_size)))
 
     def test(self):
         if not os.path.isfile(self.model_path):
@@ -256,15 +258,16 @@ class HeadSeg():
         df_test['rle_mask'] = rles
         df_test.to_csv('../submit/submission.csv.gz', index=False, compression='gzip')
 
-    def test_one(self):
+    def test_one(self, list_file='lfw-deepfunneled.txt'):
         if not os.path.isfile(self.model_path):
             raise RuntimeError("No model found.")
         self.model.load_weights(self.model_path)
 
-        df_test = pd.read_csv(INPUT_PATH + 'sample_submission.csv')
-        test_imgs = list(df_test['img'])
-
-        nTest = len(test_imgs)
+        ids_test = []
+        with open(INPUT_PATH + list_file, 'r') as f:
+            for line in f:
+                ids_test.append(line.strip())
+        nTest = len(ids_test)
         print('Testing on {} samples'.format(nTest))
 
         if not os.path.isfile(self.model_path):
@@ -279,31 +282,35 @@ class HeadSeg():
             print(nbatch)
             nbatch += 1
             x_batch = []
+            images = []
             end = min(start + self.batch_size, nTest)
             for i in range(start, end):
-                img = cv2.imread(INPUT_PATH + 'test/{}'.format(test_imgs[i]))
-                img = cv2.resize(img, (self.input_dim/self.factor, self.input_dim/self.factor), interpolation=cv2.INTER_LINEAR)
+                raw_img = cv2.imread('../' + ids_test[i])
+                img = cv2.resize(raw_img, (self.input_dim/self.factor, self.input_dim/self.factor), interpolation=cv2.INTER_LINEAR)
                 x_batch.append(img)
+                images.append(raw_img)
             x_batch = np.array(x_batch, np.float32) / 255.0
-            p_test = self.model.predict(x_batch, batch_size=self.batch_size)
+            p_test = self.model.predict(x_batch, batch_size=self.batch_size)[0]
 
             if self.direct_result:
-                result = get_final_mask(p_test, self.threshold)
+                result, probs = get_final_mask(p_test, self.threshold, apply_crf=self.apply_crf, images=images)
             else:
                 avg_p_test = p_test[...,1] - p_test[...,0]
                 result = get_result(avg_p_test, 0)
 
 
             str.extend(map(run_length_encode, result))
+
             # save predicted masks
-            # if not os.path.exists(OUTPUT_PATH):
-            #     os.mkdir(OUTPUT_PATH)
-            #
-            # for i in range(start, end):
-            #     cv2.imwrite(OUTPUT_PATH + '{}'.format(test_imgs[i]), (255 * result[i-start]).astype(np.uint8))
+            if not os.path.exists(OUTPUT_PATH):
+                os.mkdir(OUTPUT_PATH)
+
+            for i in range(start, end):
+                img_path = ids_test[i][ids_test[i].rfind('/')+1:]
+                cv2.imwrite(OUTPUT_PATH + '{}'.format(img_path), (255 * probs[i-start]).astype(np.uint8))
 
         print("Generating submission file...")
-        df = pd.DataFrame({'img': test_imgs, 'rle_mask': str})
+        df = pd.DataFrame({'img': ids_test, 'rle_mask': str})
         df.to_csv('../submit/submission.csv.gz', index=False, compression='gzip')
 
 
@@ -311,4 +318,4 @@ if __name__ == "__main__":
     ccs = HeadSeg()
 
     ccs.train()
-    ccs.test_one()
+    # ccs.test_one(list_file='lfw-deepfunneled.txt')
