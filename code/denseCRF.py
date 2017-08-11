@@ -92,10 +92,8 @@ def cropHead(Q, img):
     return img_rgba
 
 def main():
-    imgList = getImageList(input_folder='/home/jin/shenzhenyuan/head-segmentation/input/test')
-    with open('/home/jin/shenzhenyuan/head-segmentation/input/testSet.txt', 'w') as f:
-        for img_path in imgList:
-            f.write(img_path + '\n')
+    imgList = getImageList(input_folder='/home/jin/shenzhenyuan/head-segmentation/input/test',
+                           output_file='/home/jin/shenzhenyuan/head-segmentation/input/testSet.txt')
     for img_path in imgList:
         img = cv2.imread('{}'.format(img_path))
         if img_path[:img_path.rfind('.')].endswith('png'):
