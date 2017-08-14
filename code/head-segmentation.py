@@ -40,6 +40,9 @@ class HeadSeg():
         self.nb_classes = nb_classes
         # self.model = newnet.fcn_32s(input_dim, nb_classes)
         self.model = unet.get_unet_512(input_shape=(self.input_dim, self.input_dim, 3))
+
+        with open('../weights/model.json', 'w') as json_file:
+            json_file.write(self.model.to_json())
         self.model_path = '../weights/head-segmentation-model.h5'
         self.threshold = 0.5
         self.direct_result = True
