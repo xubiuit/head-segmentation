@@ -20,7 +20,7 @@ def inference(image, model):
     predict the mask given specific image and the model object
     :param image: [1, 512, 512, 3] 'float32' input image normalized to [0, 1]
     :param model: model object
-    :return: [1, 512, 512, 1] ] 'float32' output mask
+    :return: [1, 512, 512, 1] 'float32' output mask
     '''
     # print image.shape
     # print image.dtype
