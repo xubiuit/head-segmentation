@@ -32,14 +32,14 @@ OUTPUT_PATH = '../output/'
 
 
 class HeadSeg():
-    def __init__(self, input_dim=512, batch_size=5, epochs=100, learn_rate=1e-2, nb_classes=2):
+    def __init__(self, input_dim=256, batch_size=12, epochs=100, learn_rate=1e-2, nb_classes=2):
         self.input_dim = input_dim
         self.batch_size = batch_size
         self.epochs = epochs
         self.learn_rate = learn_rate
         self.nb_classes = nb_classes
         # self.model = newnet.fcn_32s(input_dim, nb_classes)
-        self.model = unet.get_unet_512(input_shape=(self.input_dim, self.input_dim, 3))
+        self.model = unet.get_unet_256(input_shape=(self.input_dim, self.input_dim, 3))
 
         with open('../weights/model.json', 'w') as json_file:
             json_file.write(self.model.to_json())
@@ -102,9 +102,9 @@ class HeadSeg():
                         mask = cv2.resize(mask, (self.input_dim, self.input_dim), interpolation=cv2.INTER_LINEAR)
                         # mask = transformations2(mask, j)
                         img, mask = randomShiftScaleRotate(img, mask,
-                                                           shift_limit=(-0.0625, 0.0625),
+                                                           shift_limit=(-0.0725, 0.0725),
                                                            scale_limit=(-0.125, 0.125),
-                                                           rotate_limit=(-0, 0))
+                                                           rotate_limit=(-5, 5))
                         img, mask = randomHorizontalFlip(img, mask)
                         img = randomGammaCorrection(img)
                         if self.factor != 1:
@@ -124,7 +124,7 @@ class HeadSeg():
 
                     x_batch = np.array(x_batch, np.float32) / 255.0
                     y_batch = np.array(y_batch, np.float32)
-                    yield x_batch, [y_batch, y_batch]
+                    yield x_batch, [y_batch]
 
         def valid_generator():
             while True:
@@ -153,17 +153,7 @@ class HeadSeg():
 
                     x_batch = np.array(x_batch, np.float32) / 255.0
                     y_batch = np.array(y_batch, np.float32)
-                    yield x_batch, [y_batch, y_batch]
-
-
-        # opt  = optimizers.SGD(lr=self.learn_rate, momentum=0.9)
-        # self.model.compile(loss='binary_crossentropy', # We NEED binary here, since categorical_crossentropy l1 norms the output before calculating loss.
-        #                   optimizer=opt,
-        #                   metrics=[dice_loss])
-
-        self.model.compile(optimizer=optimizers.SGD(lr=self.learn_rate, momentum=0.9),
-                           loss=['binary_crossentropy', dice_loss],
-                           metrics=[dice_loss])
+                    yield x_batch, [y_batch]
 
         callbacks = [EarlyStopping(monitor='val_loss',
                                        patience=5,
@@ -179,11 +169,13 @@ class HeadSeg():
                                          save_weights_only=True),
                     TensorBoard(log_dir='logs')]
 
-
+        self.model.compile(optimizer=optimizers.SGD(lr=self.learn_rate, momentum=0.9),
+                           loss=[bce_dice_loss], #['binary_crossentropy', dice_loss]
+                           metrics=[dice_score])
         self.model.fit_generator(
             generator=train_generator(),
             steps_per_epoch=math.ceil(nTrain / float(self.batch_size)),
-            epochs=10,
+            epochs=15,
             verbose=2,
             callbacks=callbacks,
             validation_data=valid_generator(),
@@ -191,15 +183,15 @@ class HeadSeg():
 
 
         opt  = optimizers.SGD(lr=0.1*self.learn_rate, momentum=0.9)
-        self.model.compile(loss=['binary_crossentropy', dice_loss], # We NEED binary here, since categorical_crossentropy l1 norms the output before calculating loss.
+        self.model.compile(loss=[bce_dice_loss], # We NEED binary here, since categorical_crossentropy l1 norms the output before calculating loss.
                           optimizer=opt,
-                          metrics=[dice_loss])
+                          metrics=[dice_score])
 
 
         self.model.fit_generator(
             generator=train_generator(),
             steps_per_epoch=math.ceil(nTrain / float(self.batch_size)),
-            epochs=self.epochs - 10,
+            epochs=self.epochs - 15,
             verbose=2,
             callbacks=callbacks,
             validation_data=valid_generator(),

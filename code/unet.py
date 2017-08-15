@@ -249,7 +249,7 @@ def get_unet_256(input_shape=(256, 256, 3),
 
     model = Model(inputs=inputs, outputs=classify)
 
-    model.compile(optimizer=SGD(lr=0.01, momentum=0.9), loss='binary_crossentropy', metrics=[dice_loss])
+    # model.compile(optimizer=SGD(lr=0.01, momentum=0.9), loss='binary_crossentropy', metrics=[dice_loss])
 
     return model
 
