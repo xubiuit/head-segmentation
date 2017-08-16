@@ -26,11 +26,12 @@ def inference(image, model):
     '''
     # print image.shape
     # print image.dtype
+    # return model.predict(image, batch_size=1)
     return model.predict(image, batch_size=1)[0]
 
 
 if __name__ == '__main__':
-    model = init('../weights/model.json', '../weights/head-segmentation-model.h5')
+    model = init('../weights/model_unet512.json', '../weights/head-segmentation-model_unet512.h5')
     list_file = '../input/expo.txt'
     ids_test = []
     with open(list_file, 'r') as f:
