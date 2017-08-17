@@ -71,5 +71,5 @@ if __name__ == '__main__':
         plt.savefig('../output/demo/{}.jpg'.format(i))
         cv2.imwrite('../tmp_res.png', mask*raw_img)
     subprocess.call([
-        'ffmpeg', '-framerate', '4', '-i', '../output/demo/%d.jpg', '-r', '30', '-pix_fmt', 'yuv1080p', '../headseg_demo.mp4'
+        'ffmpeg', '-framerate', '4', '-i', '../output/demo/%d.jpg', '-r', '30', '-pix_fmt', 'yuv420p', '../headseg_demo.mp4'
     ])
