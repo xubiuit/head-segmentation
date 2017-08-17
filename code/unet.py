@@ -249,7 +249,7 @@ def get_unet_256(input_shape=(256, 256, 3),
 
     model = Model(inputs=inputs, outputs=classify)
 
-    model.compile(optimizer=SGD(lr=0.01, momentum=0.9), loss='binary_crossentropy', metrics=[dice_loss])
+    # model.compile(optimizer=SGD(lr=0.01, momentum=0.9), loss='binary_crossentropy', metrics=[dice_loss])
 
     return model
 
@@ -402,6 +402,7 @@ def get_unet_512(input_shape=(512, 512, 3),
     classify = Conv2D(num_classes, (1, 1), activation='sigmoid')(up0a)
     mask = classify
     model = Model(inputs=inputs, outputs=[classify, mask])
+    # model = Model(inputs=inputs, outputs=[classify])
 
     # model.compile(optimizer=SGD(lr=0.01, momentum=0.9), loss='binary_crossentropy', metrics=[dice_loss])
 
