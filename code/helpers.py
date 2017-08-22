@@ -13,6 +13,7 @@ from pydensecrf.utils import compute_unary, create_pairwise_bilateral, \
 
 from keras.losses import binary_crossentropy
 
+
 ORIG_WIDTH = 600 #250 # 600
 ORIG_HEIGHT = 800 #250 # 800
 
@@ -205,15 +206,39 @@ def dice_loss(y_true, y_pred):
 def bce_dice_loss(y_true, y_pred):
     return binary_crossentropy(y_true, y_pred) + dice_loss(y_true, y_pred)
 
-def get_score(train_masks, avg_masks, thr):
-    d = 0.0
-    for i in range(train_masks.shape[0]):
-        pred_mask = avg_masks[i][:,:,1] - avg_masks[i][:,:,0]
-        pred_mask[pred_mask > thr] = 1
-        pred_mask[pred_mask <= thr] = 0
-        d += dice_loss(train_masks[i], pred_mask)
-    return d/train_masks.shape[0]
+def weightedBCELoss2d(y_true, y_pred, weights):
+    loss = weights * y_pred * (1-y_true) + weights * K.log(1+K.exp(-y_pred))
+    return K.sum(loss)/K.sum(weights)
 
+def weightedSoftDiceLoss(y_true, y_pred, weights):
+    smooth = 1.
+    w = K.flatten(weights)
+    w2 = w * w
+    y_true_f = w * K.flatten(y_true)
+    y_pred_f = w * K.flatten(y_pred)
+
+    intersection = K.sum(y_true_f * y_pred_f)
+    return (2. * intersection + smooth) / (K.sum(y_true_f) + K.sum(y_pred_f) + smooth)
+
+def weightedLoss(y_true, y_pred):
+    # compute weights
+    # a = cv2.blur(y_true, (11,11))
+    # ind = (a > 0.01) * (a < 0.99)
+    # ind = ind.astype(np.float32)
+    # weights = np.ones(a.shape)
+    a = K.pool2d(y_true, (11,11), strides=(1, 1), padding='same', data_format=None, pool_mode='avg')
+    ind = K.cast(K.greater(a, 0.01), dtype='float32') * K.cast(K.less(a, 0.99), dtype='float32')
+
+
+
+    weights = K.ones([4,512,512,1], dtype='float32')
+    w0 = K.sum(weights)
+    # w0 = weights.sum()
+    weights = weights + ind * 2
+    w1 = K.sum(weights)
+    # w1 = weights.sum()
+    weights = weights / w1 * w0
+    return weightedBCELoss2d(y_true, y_pred, weights) + weightedSoftDiceLoss(y_true, y_pred, weights)
 
 def get_result(imgs, thresh):
     result = []
