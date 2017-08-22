@@ -240,6 +240,16 @@ def weightedLoss(y_true, y_pred):
     weights = weights / w1 * w0
     return weightedBCELoss2d(y_true, y_pred, weights) + weightedSoftDiceLoss(y_true, y_pred, weights)
 
+def get_score(train_masks, avg_masks, thr):
+    d = 0.0
+    for i in range(train_masks.shape[0]):
+        pred_mask = avg_masks[i][:,:,1] - avg_masks[i][:,:,0]
+        pred_mask[pred_mask > thr] = 1
+        pred_mask[pred_mask <= thr] = 0
+        d += dice_loss(train_masks[i], pred_mask)
+    return d/train_masks.shape[0]
+
+
 def get_result(imgs, thresh):
     result = []
     for img in imgs:
