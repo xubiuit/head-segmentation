@@ -94,6 +94,23 @@ def transformations2(src, choice):
         src = cv2.flip(src, flipCode=1)
     return src
 
+def randomHueSaturationValue(image, hue_shift_limit=(-180, 180),
+                             sat_shift_limit=(-255, 255),
+                             val_shift_limit=(-255, 255), u=0.5):
+    if np.random.random() < u:
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        h, s, v = cv2.split(image)
+        hue_shift = np.random.uniform(hue_shift_limit[0], hue_shift_limit[1])
+        h = cv2.add(h, hue_shift)
+        sat_shift = np.random.uniform(sat_shift_limit[0], sat_shift_limit[1])
+        s = cv2.add(s, sat_shift)
+        val_shift = np.random.uniform(val_shift_limit[0], val_shift_limit[1])
+        v = cv2.add(v, val_shift)
+        image = cv2.merge((h, s, v))
+        image = cv2.cvtColor(image, cv2.COLOR_HSV2BGR)
+
+    return image
+
 def randomShiftScaleRotate(image, mask,
                            shift_limit=(-0.0625, 0.0625),
                            scale_limit=(-0.1, 0.1),
@@ -142,10 +159,10 @@ def randomHorizontalFlip(image, mask, u=0.5):
 
 
 def randomGammaCorrection(image):
-    lower = 0.6
-    upper = 1.2
+    lower = 0.5
+    upper = 1.5
     mu = 1
-    sigma = 0.2
+    sigma = 0.5
     alpha = stats.truncnorm((lower-mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma)
     image = (pow(image/255.0, alpha.rvs(1)[0]) * 255).astype(np.uint8)
     return image
