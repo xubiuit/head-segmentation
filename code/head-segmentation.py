@@ -33,15 +33,15 @@ OUTPUT_PATH = '../output/'
 
 
 class HeadSeg():
-    def __init__(self, input_dim=512, batch_size=16, epochs=100, learn_rate=1e-2, nb_classes=2):
+    def __init__(self, input_dim=512, batch_size=1, epochs=100, learn_rate=1e-2, nb_classes=2):
         self.input_dim = input_dim
         self.batch_size = batch_size
         self.epochs = epochs
         self.learn_rate = learn_rate
         self.nb_classes = nb_classes
         # self.model = newnet.fcn_32s(input_dim, nb_classes)
-        # self.model = unet.get_unet_512(input_shape=(self.input_dim, self.input_dim, 3))
-        self.model =pspnet.pspnet2(input_shape=(self.input_dim, self.input_dim, 3))
+        self.model = unet.get_unet_512(input_shape=(self.input_dim, self.input_dim, 3))
+        # self.model =pspnet.pspnet2(input_shape=(self.input_dim, self.input_dim, 3))
         with open('../weights/model.json', 'w') as json_file:
             json_file.write(self.model.to_json())
         self.model_path = '../weights/head-segmentation-model.h5'
@@ -180,7 +180,8 @@ class HeadSeg():
                                          save_weights_only=True),
                     TensorBoard(log_dir='logs')]
 
-        opt = optimizers.RMSprop(lr=0.0001)
+        # opt = optimizers.RMSprop(lr=0.0001)
+        opt = optimizers.RMSpropAccum(lr=1e-4, accumulator=16)
 
         self.model.compile(optimizer=opt,
                            loss=[bce_dice_loss],

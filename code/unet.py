@@ -359,6 +359,10 @@ def block(in_layer, nchan, relu=False):
 
     out_layer = concatenate([b1, b4], axis=3)
     out_layer = Conv2D(nchan, (1, 1), padding='same')(out_layer)
+    if relu:
+        out_layer = Activation('relu')(out_layer)
+    else:
+        out_layer = LeakyReLU(0.0001)(out_layer)
     return out_layer
 
 # def get_unet_512(input_shape=(512, 512, 3),
