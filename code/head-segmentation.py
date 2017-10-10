@@ -23,6 +23,7 @@ import random
 from PIL import Image
 from sklearn.model_selection import train_test_split
 import unet
+import pspnet
 
 np.set_printoptions(threshold='nan')
 
@@ -32,7 +33,7 @@ OUTPUT_PATH = '../output/'
 
 
 class HeadSeg():
-    def __init__(self, input_dim=512, batch_size=5, epochs=100, learn_rate=1e-2, nb_classes=2):
+    def __init__(self, input_dim=512, batch_size=1, epochs=100, learn_rate=1e-2, nb_classes=2):
         self.input_dim = input_dim
         self.batch_size = batch_size
         self.epochs = epochs
@@ -40,7 +41,7 @@ class HeadSeg():
         self.nb_classes = nb_classes
         # self.model = newnet.fcn_32s(input_dim, nb_classes)
         self.model = unet.get_unet_512(input_shape=(self.input_dim, self.input_dim, 3))
-
+        # self.model =pspnet.pspnet2(input_shape=(self.input_dim, self.input_dim, 3))
         with open('../weights/model.json', 'w') as json_file:
             json_file.write(self.model.to_json())
         self.model_path = '../weights/head-segmentation-model.h5'
@@ -101,6 +102,10 @@ class HeadSeg():
                         mask = cv2.imread(mask_path)[...,0]
                         mask = cv2.resize(mask, (self.input_dim, self.input_dim), interpolation=cv2.INTER_LINEAR)
                         # mask = transformations2(mask, j)
+                        # img = randomHueSaturationValue(img,
+                        #                                hue_shift_limit=(-50, 50),
+                        #                                sat_shift_limit=(-5, 5),
+                        #                                val_shift_limit=(-15, 15))
                         img, mask = randomShiftScaleRotate(img, mask,
                                                            shift_limit=(-0.0625, 0.0625),
                                                            scale_limit=(-0.125, 0.125),
@@ -124,7 +129,7 @@ class HeadSeg():
 
                     x_batch = np.array(x_batch, np.float32) / 255.0
                     y_batch = np.array(y_batch, np.float32)
-                    yield x_batch, [y_batch, y_batch]
+                    yield x_batch, [y_batch]
 
         def valid_generator():
             while True:
@@ -153,20 +158,16 @@ class HeadSeg():
 
                     x_batch = np.array(x_batch, np.float32) / 255.0
                     y_batch = np.array(y_batch, np.float32)
-                    yield x_batch, [y_batch, y_batch]
+                    yield x_batch, [y_batch]
 
 
-        # opt  = optimizers.SGD(lr=self.learn_rate, momentum=0.9)
+        # opt = optimizers.SGD(lr=self.learn_rate, momentum=0.9)
         # self.model.compile(loss='binary_crossentropy', # We NEED binary here, since categorical_crossentropy l1 norms the output before calculating loss.
         #                   optimizer=opt,
         #                   metrics=[dice_loss])
 
-        self.model.compile(optimizer=optimizers.SGD(lr=self.learn_rate, momentum=0.9),
-                           loss=['binary_crossentropy', dice_loss],
-                           metrics=[dice_score])
-
         callbacks = [EarlyStopping(monitor='val_loss',
-                                       patience=5,
+                                       patience=6,
                                        verbose=1,
                                        min_delta=1e-4),
                     ReduceLROnPlateau(monitor='val_loss',
@@ -179,31 +180,46 @@ class HeadSeg():
                                          save_weights_only=True),
                     TensorBoard(log_dir='logs')]
 
+        # opt = optimizers.RMSprop(lr=0.0001)
+        opt = optimizers.RMSpropAccum(lr=1e-4, accumulator=16)
+
+        self.model.compile(optimizer=opt,
+                           loss=[bce_dice_loss],
+                           metrics=[dice_score, weightedLoss, bce_dice_loss])
 
         self.model.fit_generator(
             generator=train_generator(),
             steps_per_epoch=math.ceil(nTrain / float(self.batch_size)),
-            epochs=10,
+            epochs=1,
+            verbose=1,
+            callbacks=callbacks,
+            validation_data=valid_generator(),
+            validation_steps=math.ceil(nValid / float(self.batch_size)))
+
+        self.model.fit_generator(
+            generator=train_generator(),
+            steps_per_epoch=math.ceil(nTrain / float(self.batch_size)),
+            epochs=self.epochs,
             verbose=2,
             callbacks=callbacks,
             validation_data=valid_generator(),
             validation_steps=math.ceil(nValid / float(self.batch_size)))
 
 
-        opt  = optimizers.SGD(lr=0.1*self.learn_rate, momentum=0.9)
-        self.model.compile(loss=['binary_crossentropy', dice_loss], # We NEED binary here, since categorical_crossentropy l1 norms the output before calculating loss.
-                          optimizer=opt,
-                          metrics=[dice_score])
-
-
-        self.model.fit_generator(
-            generator=train_generator(),
-            steps_per_epoch=math.ceil(nTrain / float(self.batch_size)),
-            epochs=self.epochs - 10,
-            verbose=2,
-            callbacks=callbacks,
-            validation_data=valid_generator(),
-            validation_steps=math.ceil(nValid / float(self.batch_size)))
+        # opt  = optimizers.SGD(lr=0.1*self.learn_rate, momentum=0.9)
+        # self.model.compile(loss=['binary_crossentropy', dice_loss], # We NEED binary here, since categorical_crossentropy l1 norms the output before calculating loss.
+        #                   optimizer=opt,
+        #                   metrics=[dice_score])
+        #
+        #
+        # self.model.fit_generator(
+        #     generator=train_generator(),
+        #     steps_per_epoch=math.ceil(nTrain / float(self.batch_size)),
+        #     epochs=self.epochs - 15,
+        #     verbose=2,
+        #     callbacks=callbacks,
+        #     validation_data=valid_generator(),
+        #     validation_steps=math.ceil(nValid / float(self.batch_size)))
 
     def test(self):
         if not os.path.isfile(self.model_path):

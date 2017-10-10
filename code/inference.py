@@ -31,8 +31,10 @@ def inference(image, model):
 
 
 if __name__ == '__main__':
-    model = init('../weights/model_unet512.json', '../weights/head-segmentation-model_unet512.h5')
-    list_file = '../input/expo.txt'
+    model = init('../weights/model.json', '../weights/head-segmentation-model.h5')
+    # list_file = '../input/expo.txt'
+    list_file = '../input/kk0915.txt'
+
     ids_test = []
     with open(list_file, 'r') as f:
         for line in f:
@@ -48,7 +50,7 @@ if __name__ == '__main__':
         # print pred.shape
         # print pred.dtype
 
-        prob = cv2.resize(pred[0], (W, H))
+        prob = cv2.resize(pred, (W, H))
 
         mask = prob > 0.5
 
