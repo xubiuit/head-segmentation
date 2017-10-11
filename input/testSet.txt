@@ -1,31 +1,252 @@
-input/test/bad/26efddae44cef3f76613dec66120978b.jpg.jpg
-input/test/bad/5719307201640f602274e7e9b4206890.jpg.jpg
-input/test/bad/2c7f3995ee4d97ff4d066ede1eef97ef.jpg.jpg
-input/test/bad/54881b959a26178d1ab9f8ddbbd29dba.jpg.jpg
-input/test/bad/381cdf26549805284222a2bb3507f5e3.jpg_1.jpg
-input/test/bad/5bca985f4332c0546475b2bf5dda139f.jpg_1.jpg
-input/test/bad/c25dee651fe44d0d7836611bb59e0166.jpg.jpg
-input/test/bad/6e6f7f0c73b19181db4d34f8d29e768b.jpg.jpg
-input/test/bad/64dd50d0f8da41e178dbc5ccb2e1475b.jpg.jpg
-input/test/bad/22687a1c5a5dca149c224f6c86679947.jpg_1.jpg
-input/test/bad/60ab652b680a514e7d77fe2c114d546f.jpg.jpg
-input/test/bad/0bdc524282ca69f7bf2d1b08983a2178.jpg.jpg
-input/test/bad/fdc9c8968f8b45b45e138eb2834812b1.jpg.jpg
-input/test/bad/4d893378deb00d7653e66a43b500ab13.jpg.jpg
-input/test/bad/4ee75f0770554a5cb0535b49b605020e.jpg.jpg
-input/test/bad/f9787cf0376aa5f8bffa5d3c19bf1bc3.jpg.jpg
-input/test/bad/a9d265597e7375aa030e295267b33fa8.jpg.jpg
-input/test/bad/7180c9b91bd4601fa20ce98dab8d16ed.jpg.jpg
-input/test/bad/b8c74a67d4ecd5d524f15ceea9bbb63e.jpg.jpg
-input/test/bad/3afa30aa6ca39d73a4faedd2f5e71fcc.jpg_1.jpg
-input/test/bad/6898ba68573ea1c8aed42354ca430d81.jpg_1.jpg
-input/test/bad/3aadff88454cab5bde90f0ab2f4757e1.jpg.jpg
-input/test/good/417198adc87c613c5f8415bcf9bf0892.jpg_0.png.jpg
-input/test/good/6fbd84e5a036bd47b32d52d1d8f4e430.jpg_1.png.jpg
-input/test/good/6b11a814f3de692fe3ed0ba03fa0446c.jpg.png.jpg
-input/test/good/297ac0f69bdbc30bd5d1e09203afb510.jpg_0.png.jpg
-input/test/good/0c053b933db55f3657901d7cdef8c9d6.jpg.png.jpg
-input/test/good/7c3921e53f30906b796d632dd2d2f3f9.jpg_0.png.jpg
-input/test/good/a0e4dfa5118a3798c96ab6a246ef0fae.jpg_0.png.jpg
-input/test/good/5bed0dbc79cd19bd5c612c143c2cf5bd.jpg.png.jpg
-input/test/good/0ee93e3c3521be575d9031e64f2f90a3.jpg_0.png.jpg
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/082804c5bf9091ad031aac5386c38580.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/082804c5bf9091ad031aac5386c38580_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/0fedacd9096c31ada71cf937b34807e8.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/0fedacd9096c31ada71cf937b34807e8_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/0f18592921bac6d74e327c0ae47ec6b8.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/0f18592921bac6d74e327c0ae47ec6b8_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/7119284327455bd557493ba53fe14e94.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/7119284327455bd557493ba53fe14e94_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/c30e17bb5fa38f276c9bce351ba27870.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/c30e17bb5fa38f276c9bce351ba27870_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/83d02ab03bd803d59340dc2beb4c5157.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/83d02ab03bd803d59340dc2beb4c5157_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/0b185b1e95a68b72d8cef8f9fc9d07bc.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/0b185b1e95a68b72d8cef8f9fc9d07bc_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/3867db56ea3187ca6e514a2056cbd309.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/3867db56ea3187ca6e514a2056cbd309_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/10488200603384dad51c83c76b6ff631.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/10488200603384dad51c83c76b6ff631_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/741e33f67df9c631b72343f2a0563d67.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/741e33f67df9c631b72343f2a0563d67_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/b12430feb6e97b810fcd7ff063c566e5.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/b12430feb6e97b810fcd7ff063c566e5_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/841c3fbc8acc6627a43f478172271548.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/841c3fbc8acc6627a43f478172271548_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/58a5b873301d6c7a6484e304106a992a.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/58a5b873301d6c7a6484e304106a992a_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/dd0119a468f354d82497bed856162d6c.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/dd0119a468f354d82497bed856162d6c_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/b5513f7247fa81b4d4d5fb2fa4b817e7.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/b5513f7247fa81b4d4d5fb2fa4b817e7_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/2719a8b4ae99766cb35bd87740cd2654.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/2719a8b4ae99766cb35bd87740cd2654_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/fa442ddc99f4d2e6c797f7a605cd82bb.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/fa442ddc99f4d2e6c797f7a605cd82bb_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/2aeac4b8023068b7ab092f58ba911171.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/2aeac4b8023068b7ab092f58ba911171_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/36803f8c23ea132bc9cb08fe12a1ecc7.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/36803f8c23ea132bc9cb08fe12a1ecc7_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/b44064b2a5c7a344702c065814f66770.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/b44064b2a5c7a344702c065814f66770_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/6f8d9d2ebbb3380e207f7d3b21b00e5a.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/6f8d9d2ebbb3380e207f7d3b21b00e5a_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/aa1c25d05fa598705f9a07ba1f8f408f.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/aa1c25d05fa598705f9a07ba1f8f408f_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/976ae84cc47cfaeec7b34b38fb3da6a7.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/976ae84cc47cfaeec7b34b38fb3da6a7_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/32c7714d97a287494a84865aed1ec253.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/32c7714d97a287494a84865aed1ec253_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/606aadce51d469d2cfa528a27aa089c5.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/606aadce51d469d2cfa528a27aa089c5_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/2698fbf7fd7d94f6e975501e9ce3b762.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/2698fbf7fd7d94f6e975501e9ce3b762_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/fc741cf33e6985c2b1ee638ed4f823b7.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/fc741cf33e6985c2b1ee638ed4f823b7_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/b5d6b23b95d2868dbbd0921c96d814db.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/b5d6b23b95d2868dbbd0921c96d814db_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/28f2328159867e2ea2ff33689ecf0fec.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/28f2328159867e2ea2ff33689ecf0fec_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/be8410d074da3253d8e68fe88b627773.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/be8410d074da3253d8e68fe88b627773_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/e05b505c672bdca9d8fe0f232a180a86.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/e05b505c672bdca9d8fe0f232a180a86_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/26b87d488c469e965228ad6e6aa89b55.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/26b87d488c469e965228ad6e6aa89b55_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/1547769aa8c71711ff729f31f49a9ba4.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/1547769aa8c71711ff729f31f49a9ba4_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/7fd835dbabfec9f4f24e710acbcf8b5c.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/7fd835dbabfec9f4f24e710acbcf8b5c_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/8615436aa82c0c166aeb647bd09f5693.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/8615436aa82c0c166aeb647bd09f5693_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/d94739dd3854ff1d5f4b706cf0ecd39d.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/d94739dd3854ff1d5f4b706cf0ecd39d_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/f477bf2373ea460fd3d2b8e4f89fc2e6.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/f477bf2373ea460fd3d2b8e4f89fc2e6_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/e42d70382e1a4f5d4a7a499b46b64fe9.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/e42d70382e1a4f5d4a7a499b46b64fe9_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/61fb6d3fc1e343a36b0fae623e125a6e.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/61fb6d3fc1e343a36b0fae623e125a6e_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/d8d99459d115ae8de0a13f334151ec9f.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/d8d99459d115ae8de0a13f334151ec9f_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/224e89ee71be25f55bbff644e4308a24.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/224e89ee71be25f55bbff644e4308a24_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/5d1232d9b84012d7b001ca9ebba0cf10.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/5d1232d9b84012d7b001ca9ebba0cf10_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/441c7983cdc7ac0b0b63e093af07d9cb.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/441c7983cdc7ac0b0b63e093af07d9cb_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/571ac55917fb1495d052aeec62f06cbb.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/571ac55917fb1495d052aeec62f06cbb_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/eceaede114f89d2a940d42941fa8f65c.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/eceaede114f89d2a940d42941fa8f65c_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/4cd335a83df448bc79bba8ff74bae3cd.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/4cd335a83df448bc79bba8ff74bae3cd_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/025903ebb3ac7506fa0a09e7e35dace5.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/025903ebb3ac7506fa0a09e7e35dace5_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/4f85794861adc9bdb002dc420c033d23.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/4f85794861adc9bdb002dc420c033d23_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/cd84aa059a7665d1e3e71ac40d819914.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/cd84aa059a7665d1e3e71ac40d819914_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/3254b5eaa5137a2c2a2ee37388e72df9.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/3254b5eaa5137a2c2a2ee37388e72df9_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/4bd07a11d268aa1b24f78e372825a937.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/4bd07a11d268aa1b24f78e372825a937_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/95d57b2896b564b7e7f9f14e1d5ad67a.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/95d57b2896b564b7e7f9f14e1d5ad67a_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/57b4b49af9b5d150ef997f4350cebb2a.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/57b4b49af9b5d150ef997f4350cebb2a_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/6d67927b59dff1de9f123e15059c1c0a.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/6d67927b59dff1de9f123e15059c1c0a_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/35f5694c823dd2b089ba8bd50cf2c0ff.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/35f5694c823dd2b089ba8bd50cf2c0ff_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/f0e2abde7185b9cfe5c6877e47d0487b.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/f0e2abde7185b9cfe5c6877e47d0487b_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/930ccd6c1148dd9d1812d3db2a70152c.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/930ccd6c1148dd9d1812d3db2a70152c_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/ca913f3089c78a860b8b067afa229b5d.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/ca913f3089c78a860b8b067afa229b5d_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/9c37f5560b9ecfa054027affe2941c69.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/9c37f5560b9ecfa054027affe2941c69_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/19e39dd8fad9cfd3c8ebbbfee49e503e.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/19e39dd8fad9cfd3c8ebbbfee49e503e_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/3bd35c946aaaadb6bcb6c83bc78cd55f.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/3bd35c946aaaadb6bcb6c83bc78cd55f_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/346339b9d333cf8cae7bdb94c0e14dfb.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/346339b9d333cf8cae7bdb94c0e14dfb_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/459596bae69b94dcd6bbbb65f6c52339.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/459596bae69b94dcd6bbbb65f6c52339_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/4682933d30a23ff8ceb55b223ce67af8.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/4682933d30a23ff8ceb55b223ce67af8_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/173c0a0722097d2f5bcebf9ca8da1226.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/173c0a0722097d2f5bcebf9ca8da1226_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/97991b9ecbb770281df14f133c751c05.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/97991b9ecbb770281df14f133c751c05_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/94218ffd157a4b8a2f54786cc4710782.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/94218ffd157a4b8a2f54786cc4710782_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/04229e57bf9312036be0b772b3035c29.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/04229e57bf9312036be0b772b3035c29_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/2415e0eaf2d8de514f3b0fb5700e7e9a.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/2415e0eaf2d8de514f3b0fb5700e7e9a_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/8c85abbdde7f545f6f09996484fa49ce.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/8c85abbdde7f545f6f09996484fa49ce_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/c878a0ac3f6a526cac76b3e193ba58b6.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/c878a0ac3f6a526cac76b3e193ba58b6_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/4d61e1e9de913e7bc558f9e74424d1f0.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/4d61e1e9de913e7bc558f9e74424d1f0_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/94bb4eeba0ab4d1d56952b10df26de95.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/94bb4eeba0ab4d1d56952b10df26de95_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/b5b9aa8c4da55e42801030b41bb671c2.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/b5b9aa8c4da55e42801030b41bb671c2_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/7f9bb3f0945a88cba9c23b34438d38ef.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/7f9bb3f0945a88cba9c23b34438d38ef_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/0b797d0978f9cd0f4c3b0a8f813d0c5b.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/0b797d0978f9cd0f4c3b0a8f813d0c5b_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/877f0e1b7a5fedc4856583e7216a920f.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/877f0e1b7a5fedc4856583e7216a920f_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/ef2c70b4e48dbc520d060220a6c848f3.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/ef2c70b4e48dbc520d060220a6c848f3_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/f3489ee6f4d0f19b11adb0929d27814e.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/f3489ee6f4d0f19b11adb0929d27814e_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/9f5efac013c98ce83f88c9dc86a4c768.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/9f5efac013c98ce83f88c9dc86a4c768_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/a00a42abbb3b584741c8dc87bcf21180.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/a00a42abbb3b584741c8dc87bcf21180_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/b6ab71ec1226a4deae04e433709cf9c0.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/b6ab71ec1226a4deae04e433709cf9c0_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/19d81ac37e6e836bfdf23d00a3073440.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/19d81ac37e6e836bfdf23d00a3073440_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/aea939144f15deb1e0d4e1cb5fcaf26d.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/aea939144f15deb1e0d4e1cb5fcaf26d_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/b6a2ddc4402cc069c113dda3722c2698.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/b6a2ddc4402cc069c113dda3722c2698_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/08d40b39b1d9065347f8bec7b357afa1.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/08d40b39b1d9065347f8bec7b357afa1_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/d9b09eb39b958d7dc20436cee890e762.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/d9b09eb39b958d7dc20436cee890e762_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/0126ac1d887c6440467b6b372fb23b9c.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/0126ac1d887c6440467b6b372fb23b9c_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/defc64b5a3f8ddd431b1881d9b037cd0.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/defc64b5a3f8ddd431b1881d9b037cd0_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/3332ae5afb63248e63fb558a44a61320.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/3332ae5afb63248e63fb558a44a61320_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/aecfdb3274c68cd11e01e061d18eb11c.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/aecfdb3274c68cd11e01e061d18eb11c_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/f29831cf5fa063b0e032519d1b0d328e.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/f29831cf5fa063b0e032519d1b0d328e_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/8daccc82ea98b61caea27c0dac005060.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/8daccc82ea98b61caea27c0dac005060_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/002a064fb37e8b33e7ec36469e8ae9fd.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/002a064fb37e8b33e7ec36469e8ae9fd_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/e0a2ac518233ad60a90d5476544d5330.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/e0a2ac518233ad60a90d5476544d5330_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/a657837aa95db476858ea13669fe2545.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/a657837aa95db476858ea13669fe2545_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/4dc53e4101483046b041c2fe8d27943e.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/4dc53e4101483046b041c2fe8d27943e_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/1fb9c1410f18e376688498a6a52e984e.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/1fb9c1410f18e376688498a6a52e984e_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/43b80e6725a2ea1104bafeaa235dea9f.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/43b80e6725a2ea1104bafeaa235dea9f_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/306dc40d7dd918c9bdc7efdd344f0ff0.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/306dc40d7dd918c9bdc7efdd344f0ff0_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/1d0b86a07f49825c9168bd59d2d1a9b9.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/1d0b86a07f49825c9168bd59d2d1a9b9_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/3feb3feb740e0f66715656e093f951ed.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/3feb3feb740e0f66715656e093f951ed_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/c252fd4b84ff3967389fd97b05c019f6.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/c252fd4b84ff3967389fd97b05c019f6_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/949439a8b527b498acef3af6a5423bb9.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/949439a8b527b498acef3af6a5423bb9_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/fbb67333b9ef7bcc98f3f0c9b3826b37.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/fbb67333b9ef7bcc98f3f0c9b3826b37_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/66ec0e241fac86f076b606e6aee210f7.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/66ec0e241fac86f076b606e6aee210f7_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/40efbb4e37e09e3d8235a74d74b4afb3.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/40efbb4e37e09e3d8235a74d74b4afb3_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/fdc90bfad921031a8f12bd3eb159ebc6.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/fdc90bfad921031a8f12bd3eb159ebc6_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/d0adb70faf3873ad761e88b9d8dc6a00.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/d0adb70faf3873ad761e88b9d8dc6a00_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/fc18eda3d9833be5ff8c6a4877939702.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/fc18eda3d9833be5ff8c6a4877939702_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/8762b5e4ab351944b850fa98275adeab.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/8762b5e4ab351944b850fa98275adeab_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/2ea3361e7cc2a1ac3ec06d5ee2dd70ac.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/2ea3361e7cc2a1ac3ec06d5ee2dd70ac_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/592c4d7a3e1e4d64df66f5a134a86234.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/592c4d7a3e1e4d64df66f5a134a86234_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/ed36706843d7fcf37d15d164b2d04386.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/ed36706843d7fcf37d15d164b2d04386_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/1193d55cb7224c77d278aed769fc5769.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/1193d55cb7224c77d278aed769fc5769_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/944fb81f2ad290fc575d7e2a9847cdc4.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/944fb81f2ad290fc575d7e2a9847cdc4_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/8d894ad34d6f102c6dd66d3a4751e094.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/8d894ad34d6f102c6dd66d3a4751e094_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/f103617034f10314f5939e17c4710a4c.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/f103617034f10314f5939e17c4710a4c_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/32bf6ad28ae3a0d7714ad0c5a54242b8.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/32bf6ad28ae3a0d7714ad0c5a54242b8_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/65727523c52c91b3cda26ed1f8e09da6.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/65727523c52c91b3cda26ed1f8e09da6_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/2869ef23befee07087aeb105087a8176.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/2869ef23befee07087aeb105087a8176_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/eae169c2244beb654997f8625b625e86.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/eae169c2244beb654997f8625b625e86_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/059c9ba945898f6b0cf90e3d72dd946d.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/059c9ba945898f6b0cf90e3d72dd946d_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/072264fe428bd45c522874d268a58419.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/072264fe428bd45c522874d268a58419_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/b563033c098f3ae90cad728e89d904e9.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/b563033c098f3ae90cad728e89d904e9_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/7dcf24abda62e46dc98109e21c72e6f8.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/7dcf24abda62e46dc98109e21c72e6f8_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/9d54c5ddba4200cd8f235144b3262690.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/9d54c5ddba4200cd8f235144b3262690_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/771ea9c7758744b4e5bb981ee66ce593.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/771ea9c7758744b4e5bb981ee66ce593_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/0fdb58874882f76079416f6d59057139.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/0fdb58874882f76079416f6d59057139_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/17536d67befaee35a678fceaa79ee63a.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/17536d67befaee35a678fceaa79ee63a_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/72332f88c590e6b5a4785f6f9657f0ba.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/72332f88c590e6b5a4785f6f9657f0ba_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/d996910e2bf0d709c2a3b6d9116a38bf.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/d996910e2bf0d709c2a3b6d9116a38bf_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/1010f2aa928567a991171a2eb53a6695.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/1010f2aa928567a991171a2eb53a6695_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/093d55dab4e90d5b0068e1f1e0776876.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/093d55dab4e90d5b0068e1f1e0776876_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/fc61b159e32118068a1c8d010834e14a.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/fc61b159e32118068a1c8d010834e14a_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/75c9ac26143bc49ba9cbe4e1b09ad9dd.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/75c9ac26143bc49ba9cbe4e1b09ad9dd_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/7cabaf39529f066596cac1c30ed80388.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/7cabaf39529f066596cac1c30ed80388_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/1e6e7c953b88961bd6d63b85dcfd744b.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/1e6e7c953b88961bd6d63b85dcfd744b_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/4b18bbeab4024c02995b4602109291f2.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/4b18bbeab4024c02995b4602109291f2_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/588823d792f0779f42397b1f77c3d9d8.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/588823d792f0779f42397b1f77c3d9d8_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/c764fb5c9b4e035377c718f14a575ca1.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/c764fb5c9b4e035377c718f14a575ca1_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/17ea956ac4346dd2bdea7292490bbc17.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/17ea956ac4346dd2bdea7292490bbc17_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/0e0cfb4e3db69311715970e62c4c139b.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/0e0cfb4e3db69311715970e62c4c139b_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/e7b0c0b48df605a675e9528f71f0b800.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/e7b0c0b48df605a675e9528f71f0b800_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/cd1cd84cd0ac08410a8d72e2779adb8d.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/cd1cd84cd0ac08410a8d72e2779adb8d_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/f4aa231ca07bd13a2b33ba06bc63f752.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/f4aa231ca07bd13a2b33ba06bc63f752_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/14fdc788986e7c08059c6b32e4e39d1e.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/14fdc788986e7c08059c6b32e4e39d1e_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/a0e88b2cc23182a01eed394c2d4d512e.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/a0e88b2cc23182a01eed394c2d4d512e_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/0dbfcf1f968a2a8a40738945dfa4201a.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/0dbfcf1f968a2a8a40738945dfa4201a_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/a5f1e7c2b5204100de453c86cb3205b6.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/a5f1e7c2b5204100de453c86cb3205b6_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/56cab5cad5a0f7aae0772de35de1eba9.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/56cab5cad5a0f7aae0772de35de1eba9_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/f6a056fb5bdc7034db5fe6c0f9723c79.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/f6a056fb5bdc7034db5fe6c0f9723c79_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/a88ae91d71a97109dd62a25443274bc5.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/a88ae91d71a97109dd62a25443274bc5_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/2e0a94dc5ccfd6f8677d4964a6b806e3.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/2e0a94dc5ccfd6f8677d4964a6b806e3_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/a5438c5e282bc1b327d2e227234361ab.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/a5438c5e282bc1b327d2e227234361ab_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/2579f6d505effabf786a0970b5924e0a.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/2579f6d505effabf786a0970b5924e0a_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/3e1aa8452bff5044a2a8573e71b55de9.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/3e1aa8452bff5044a2a8573e71b55de9_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/54a91e5fafaf796f500acbdbfb44ca1a.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/54a91e5fafaf796f500acbdbfb44ca1a_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/2956f8ced2c218c460a000659f3992d7.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/2956f8ced2c218c460a000659f3992d7_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/7e6930abd37c444116c2f313ad1971d3.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/7e6930abd37c444116c2f313ad1971d3_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/61b355ea70f44534bd0be7a2c7705569.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/61b355ea70f44534bd0be7a2c7705569_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/d0cfb195a59283b000833a5598f8fa5e.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/d0cfb195a59283b000833a5598f8fa5e_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/90a4c44e9624191ec369c368e2c63e72.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/90a4c44e9624191ec369c368e2c63e72_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/6aea03c43b9f8a78fb53fc1b3d01a1e8.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/6aea03c43b9f8a78fb53fc1b3d01a1e8_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/d046b324f74a08efc3805184f9483514.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/d046b324f74a08efc3805184f9483514_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/2c0dfc27a1183a54a064a5f577aecb41.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/2c0dfc27a1183a54a064a5f577aecb41_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/c369e0a4fcf81b166366263c78005bae.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/c369e0a4fcf81b166366263c78005bae_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/3f5629b7c00dd95e5deca04d08a3e312.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/3f5629b7c00dd95e5deca04d08a3e312_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/8e333ea8cd8eaadcd18eecc1123714cb.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/8e333ea8cd8eaadcd18eecc1123714cb_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/f9204adc4a9bfda3f3d14c2b6c6a1aca.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/f9204adc4a9bfda3f3d14c2b6c6a1aca_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/b9f7469ded1f4a74cca9e5c2ef6550ba.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/b9f7469ded1f4a74cca9e5c2ef6550ba_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/5385741514781ce623a950d57ae147a0.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/5385741514781ce623a950d57ae147a0_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/b3c24d8a2e73103179f717d98575cf58.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/b3c24d8a2e73103179f717d98575cf58_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/bef7949ead772c79e170fca5e8f061a6.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/bef7949ead772c79e170fca5e8f061a6_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/08b538f7fdb5047c791eef19f056245e.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/08b538f7fdb5047c791eef19f056245e_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/08e65d40d14e81f1f43ab267616fc0a0.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/08e65d40d14e81f1f43ab267616fc0a0_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/73c65e9c075190333e86b8e6e5bc9214.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/73c65e9c075190333e86b8e6e5bc9214_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/88e10973bcc2d2596439d86876217e4a.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/88e10973bcc2d2596439d86876217e4a_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/6969bfe0839a9980036f5385dc7c8043.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/6969bfe0839a9980036f5385dc7c8043_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/88be9aa7f05b8dd3c8eb187021392775.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/88be9aa7f05b8dd3c8eb187021392775_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/4066c3ee12e4df5ee781f101355e6a9c.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/4066c3ee12e4df5ee781f101355e6a9c_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/7974a2276cea1b2b491ee1147331f5d3.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/7974a2276cea1b2b491ee1147331f5d3_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/f64ff135675e9294a49fdb50d510ca0b.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/f64ff135675e9294a49fdb50d510ca0b_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/f9c6e3a0a81cbdb522490c1d38da9e3d.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/f9c6e3a0a81cbdb522490c1d38da9e3d_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/fcd5ef63ef6dae07f9a257279a1c1f98.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/fcd5ef63ef6dae07f9a257279a1c1f98_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/4f69954ccf2e240e90adbb0156c805eb.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/4f69954ccf2e240e90adbb0156c805eb_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/b024ce5e9e4e19a977f6dd734e23c909.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/b024ce5e9e4e19a977f6dd734e23c909_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/6d5e1742a4e0a8ab49a89398357855b9.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/6d5e1742a4e0a8ab49a89398357855b9_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/f1141d50005a68824707b627f821c288.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/f1141d50005a68824707b627f821c288_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/d29254e3ed6082ecda0a0e09e650e0ca.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/d29254e3ed6082ecda0a0e09e650e0ca_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/70ebbcda98550942ce48a8cb049fd270.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/70ebbcda98550942ce48a8cb049fd270_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/8fa7fb4543b60aa46196b3a3fe6b5609.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/8fa7fb4543b60aa46196b3a3fe6b5609_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/9d6e7445fe12891fa39443e73768ba1c.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/9d6e7445fe12891fa39443e73768ba1c_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/de47a7ac8b3e519ee2aee4d2479376de.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/de47a7ac8b3e519ee2aee4d2479376de_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/a5b138fc9bdbeba8309c37b8fcc609e3.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/a5b138fc9bdbeba8309c37b8fcc609e3_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/3b08a6fe8a892c4a9c69af9cca4115bb.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/3b08a6fe8a892c4a9c69af9cca4115bb_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/cf6b7f751d900af9342c33d0aae8f69b.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/cf6b7f751d900af9342c33d0aae8f69b_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/a84a7ffde2b392e061a8f0472c69fe75.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/a84a7ffde2b392e061a8f0472c69fe75_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/2969a6a803eccab582614615e8af4239.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/2969a6a803eccab582614615e8af4239_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/1a6f5b0c690eab957ff08eba30a2e858.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/1a6f5b0c690eab957ff08eba30a2e858_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/7f8d31b934a9058e75c30e4b72fe9478.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/7f8d31b934a9058e75c30e4b72fe9478_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/828939254d9934ba1ad7ea932ff0e480.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/828939254d9934ba1ad7ea932ff0e480_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/2cdba4539ac0260734572e9ce75eb42f.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/2cdba4539ac0260734572e9ce75eb42f_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/c4ec09157fe69be4ba0b5b4317d212b4.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/c4ec09157fe69be4ba0b5b4317d212b4_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/21b61bfa6e9743fd7f12e4208d73364e.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/21b61bfa6e9743fd7f12e4208d73364e_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/6ba1a18710e041d188ecc8272bd1ab10.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/6ba1a18710e041d188ecc8272bd1ab10_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/a982d1b2c2b91e082a37d51ff2642030.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/a982d1b2c2b91e082a37d51ff2642030_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/8d99e83d33e05a1f8f422eabc72e785d.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/8d99e83d33e05a1f8f422eabc72e785d_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/033a30192415b2e0f3b46b74c4f826c4.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/033a30192415b2e0f3b46b74c4f826c4_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/34590deedc1680ab123501673256770e.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/34590deedc1680ab123501673256770e_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/5a21ede254bd3e844e2f5fbc038cfdfc.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/5a21ede254bd3e844e2f5fbc038cfdfc_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/178a84e74276de37aa0532acecabb741.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/178a84e74276de37aa0532acecabb741_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/acace20a9cb774a6045fb911f310cf40.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/acace20a9cb774a6045fb911f310cf40_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/a6d12a85a40c5405e8c8136b5211bd07.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/a6d12a85a40c5405e8c8136b5211bd07_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/db9ea8ae625a79d2f9c294ea9488368d.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/db9ea8ae625a79d2f9c294ea9488368d_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/a59e372ae5bc08de2afab9b69116a6bf.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/a59e372ae5bc08de2afab9b69116a6bf_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/5cc31978783d3801660a4b480449094d.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/5cc31978783d3801660a4b480449094d_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/485a697b686b13434c144b398655d4b5.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/485a697b686b13434c144b398655d4b5_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/031f90b24aa52fe14540ebc6957c4fb4.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/031f90b24aa52fe14540ebc6957c4fb4_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/30ca57a321702dc659047301d0baa3a9.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/30ca57a321702dc659047301d0baa3a9_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/c65589879a6eabb6575dbebc20e292e5.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/c65589879a6eabb6575dbebc20e292e5_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/d5be8219cb72bed5ec66f5b312040641.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/d5be8219cb72bed5ec66f5b312040641_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/8202a7d75b64fef69f711e33a6ed0023.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/8202a7d75b64fef69f711e33a6ed0023_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/ca1d92fb8403e89b604bfb16c29ff39c.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/ca1d92fb8403e89b604bfb16c29ff39c_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/dc0e2fc13320da452614db91f59c4240.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/dc0e2fc13320da452614db91f59c4240_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/701b5c6ae6a10039ed808f601de8aefc.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/701b5c6ae6a10039ed808f601de8aefc_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/7f3e70a8e3032f89f5e759889069ab3e.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/7f3e70a8e3032f89f5e759889069ab3e_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/c3a51ef17e8637df00c09bedc5c09be1.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/c3a51ef17e8637df00c09bedc5c09be1_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/9c08599ed73d3dbc0eabb99ada618f4d.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/9c08599ed73d3dbc0eabb99ada618f4d_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/cc524762e716b1298350a44a9a42f032.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/cc524762e716b1298350a44a9a42f032_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/3a0d3b0fda1cd1e279ee1139a2245d5a.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/3a0d3b0fda1cd1e279ee1139a2245d5a_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/4abe12a2180796b03503a664e782d23a.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/4abe12a2180796b03503a664e782d23a_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/afaa987d54f9cc8be979b461c99910fc.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/afaa987d54f9cc8be979b461c99910fc_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/6098c4fa06c97a056363997da4fa0bf5.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/6098c4fa06c97a056363997da4fa0bf5_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/1ef1d055f13f71ec54ac485f7622b9a4.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/1ef1d055f13f71ec54ac485f7622b9a4_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/5f5c1b8bbf60e52f773bb7103ac3518e.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/5f5c1b8bbf60e52f773bb7103ac3518e_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/30823b331343ded4ff45ee93999efb97.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/30823b331343ded4ff45ee93999efb97_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/118bb82fea19a38bd661374d1d93ebf2.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/118bb82fea19a38bd661374d1d93ebf2_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/89531758947ff18f2850b0c5490c892d.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/89531758947ff18f2850b0c5490c892d_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/1b3975b635346aa735481449ed956a5e.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/1b3975b635346aa735481449ed956a5e_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/bffc9e4d5d9f04db360e8cf514a01090.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/bffc9e4d5d9f04db360e8cf514a01090_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/0ba8289818c7f14b3762a6a69ba103f6.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/0ba8289818c7f14b3762a6a69ba103f6_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/70e3f264385c78e262bf25138c1e7ec1.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/70e3f264385c78e262bf25138c1e7ec1_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/bd18e50a16d02b0c397af7f117be6169.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/bd18e50a16d02b0c397af7f117be6169_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/ec817f0f7f028caef1b03ace89d69bcf.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/ec817f0f7f028caef1b03ace89d69bcf_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/95886f53da892656e9145812f0986180.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/95886f53da892656e9145812f0986180_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/a212a9af39124cc3b6f1ab77338c8f8d.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/a212a9af39124cc3b6f1ab77338c8f8d_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/a626065e844f4dab33e6790b21215385.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/a626065e844f4dab33e6790b21215385_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/fa07543775dc4e7fe5bc50b0c2d14acf.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/fa07543775dc4e7fe5bc50b0c2d14acf_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/60fd0a97e170939c546a2cc62922f9dd.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/60fd0a97e170939c546a2cc62922f9dd_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170915-20170926_all/c15d89307ae1361237b2d5cc2c626887.jpg	/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all/c15d89307ae1361237b2d5cc2c626887_mask.png
+/home/jin/VSS/koutou/data/kk/image/20170927-20170929_all/a36753eef09ce9e503420cc78a4c64e0.jpg	/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all/a36753eef09ce9e503420cc78a4c64e0_mask.png

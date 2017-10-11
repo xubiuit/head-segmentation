@@ -218,7 +218,7 @@ def dice_score(y_true, y_pred):
     return (2. * intersection + smooth) / (K.sum(y_true_f) + K.sum(y_pred_f) + smooth)
 
 def dice_loss(y_true, y_pred):
-    return 1 - dice_score(y_true, y_pred)
+    return 1. - dice_score(y_true, y_pred)
 
 def bce_dice_loss(y_true, y_pred):
     return binary_crossentropy(y_true, y_pred) + dice_loss(y_true, y_pred)
@@ -277,21 +277,22 @@ def get_result(imgs, thresh):
     return result
 
 def get_final_mask(preds, thresh=0.5, apply_crf=False, images=None):
-    result = []
+    results = []
     probs = []
     for i in range(len(preds)):
         pred = preds[i]
-        image = images[i]
+
         prob = cv2.resize(pred, (ORIG_WIDTH, ORIG_HEIGHT))
         probs.append(prob)
-        if apply_crf and image is not None:
+        if apply_crf and images is not None and len(images) > 0:
+            image = images[i]
             prob = np.dstack((prob,) * 2)
             prob[..., 0] = 1 - prob[..., 1]
             mask, _ = denseCRF(image, prob)
         else:
             mask = prob > thresh
-        result.append(mask)
-    return result, probs
+        results.append(mask)
+    return results, probs
 
 def find_best_seg_thr(masks_gt, masks_pred):
     best_score = 0
@@ -372,3 +373,14 @@ def draw(img, mask):
     plt.imshow(mask)
     plt.subplot(133)
     plt.imshow(img_masked)
+
+
+def numpy_dice_score(y_true, y_pred):
+    smooth = 1.
+    y_true_f = y_true.flatten()
+    y_pred_f = y_pred.flatten()
+    intersection = np.sum(y_true_f * y_pred_f)
+    return (2. * intersection + smooth) / (np.sum(y_true_f) + np.sum(y_pred_f) + smooth)
+
+def numpy_dice_loss(y_true, y_pred):
+    return 1. - numpy_dice_score(y_true, y_pred)
