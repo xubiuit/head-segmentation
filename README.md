@@ -3,6 +3,9 @@ Head segmentation with Keras.
 Find the demo here: https://www.youtube.com/watch?v=sOOAfrPwrNQ&t=1s
 
 ## update
+pspnet2
+
+- IoU is 0.9236 on kk-252 testset
 
 0915
 
