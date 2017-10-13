@@ -11,6 +11,7 @@ from keras.callbacks import ReduceLROnPlateau, EarlyStopping, ModelCheckpoint, T
 from keras.preprocessing.image import ImageDataGenerator
 from tqdm import tqdm
 from keras import optimizers
+from keras.models import model_from_json
 
 # from sklearn.cross_validation import KFold, StratifiedKFold
 from sklearn.model_selection import KFold
@@ -28,23 +29,30 @@ import pspnet
 np.set_printoptions(threshold='nan')
 
 INPUT_PATH = '../input/'
-OUTPUT_PATH = '../output/'
+OUTPUT_PATH = '../output/test-result/'
 
 
 
 class HeadSeg():
-    def __init__(self, input_dim=512, batch_size=1, epochs=100, learn_rate=1e-2, nb_classes=2):
-        self.input_dim = input_dim
+    def __init__(self, train = True, input_width=512, input_height=512, batch_size=1, epochs=100, learn_rate=1e-2, nb_classes=2):
+        self.input_width = input_width
+        self.input_height = input_height
         self.batch_size = batch_size
         self.epochs = epochs
         self.learn_rate = learn_rate
         self.nb_classes = nb_classes
         # self.model = newnet.fcn_32s(input_dim, nb_classes)
-        self.model = unet.get_unet_512(input_shape=(self.input_dim, self.input_dim, 3))
-        # self.model =pspnet.pspnet2(input_shape=(self.input_dim, self.input_dim, 3))
-        with open('../weights/model.json', 'w') as json_file:
-            json_file.write(self.model.to_json())
-        self.model_path = '../weights/head-segmentation-model.h5'
+        self.model = unet.get_unet_512(input_shape=(self.input_height, self.input_width, 3))
+        # self.model =pspnet.pspnet2(input_shape=(self.input_height, self.input_width, 3))
+        if train:
+            self.net_path = '../weights/model.json'
+            self.model_path = '../weights/head-segmentation-model.h5'
+            with open(self.net_path, 'w') as json_file:
+                json_file.write(self.model.to_json())
+        else:
+            self.net_path = '../weights/koutou_tf_1011_data+/model.json'
+            self.model_path = '../weights/koutou_tf_1011_data+/head-segmentation-model.h5'
+
         self.threshold = 0.5
         self.direct_result = True
         # self.nAug = 2 # incl. horizon mirror augmentation
@@ -59,7 +67,7 @@ class HeadSeg():
         with open(INPUT_PATH + 'trainSet.txt', 'r') as f:
             for line in f:
                 ids_train.append(line.strip().split())
-        self.ids_train_split, self.ids_valid_split = train_test_split(ids_train, test_size=0.2, random_state=42)
+        self.ids_train_split, self.ids_valid_split = train_test_split(ids_train, test_size=0.15, random_state=42)
 
         # index = list(range(len(self.train_imgs)))
         # random.shuffle(index)
@@ -97,10 +105,10 @@ class HeadSeg():
                     for img_path, mask_path in ids_train_batch:
                         # j = np.random.randint(self.nAug)
                         img = cv2.imread(img_path)
-                        img = cv2.resize(img, (self.input_dim, self.input_dim), interpolation=cv2.INTER_LINEAR)
+                        img = cv2.resize(img, (self.input_width, self.input_height), interpolation=cv2.INTER_LINEAR)
                         # img = transformations2(img, j)
                         mask = cv2.imread(mask_path)[...,0]
-                        mask = cv2.resize(mask, (self.input_dim, self.input_dim), interpolation=cv2.INTER_LINEAR)
+                        mask = cv2.resize(mask, (self.input_width, self.input_height), interpolation=cv2.INTER_LINEAR)
                         # mask = transformations2(mask, j)
                         # img = randomHueSaturationValue(img,
                         #                                hue_shift_limit=(-50, 50),
@@ -140,9 +148,9 @@ class HeadSeg():
                     ids_valid_batch = self.ids_valid_split[start:end]
                     for img_path, mask_path in ids_valid_batch:
                         img = cv2.imread(img_path)
-                        img = cv2.resize(img, (self.input_dim, self.input_dim), interpolation=cv2.INTER_LINEAR)
+                        img = cv2.resize(img, (self.input_width, self.input_height), interpolation=cv2.INTER_LINEAR)
                         mask = cv2.imread(mask_path)[...,0]
-                        mask = cv2.resize(mask, (self.input_dim, self.input_dim), interpolation=cv2.INTER_LINEAR)
+                        mask = cv2.resize(mask, (self.input_width, self.input_height), interpolation=cv2.INTER_LINEAR)
                         if self.factor != 1:
                             img = cv2.resize(img, (self.input_dim/self.factor, self.input_dim/self.factor), interpolation=cv2.INTER_LINEAR)
                         if self.direct_result:
@@ -248,7 +256,7 @@ class HeadSeg():
 
                         for i in range(start, end):
                             img = cv2.imread(INPUT_PATH + 'test/{}'.format(test_x[i]))
-                            img = cv2.resize(img, (self.input_dim/self.factor, self.input_dim/self.factor), interpolation=cv2.INTER_LINEAR)
+                            img = cv2.resize(img, (self.input_width, self.input_height), interpolation=cv2.INTER_LINEAR)
                             x_batch.append(img)
                         x_batch = np.array(x_batch, np.float32) / 255.0
                         yield x_batch
@@ -278,38 +286,50 @@ class HeadSeg():
         df_test.to_csv('../submit/submission.csv.gz', index=False, compression='gzip')
 
     def test_one(self, list_file='lfw-deepfunneled.txt'):
-        if not os.path.isfile(self.model_path):
+        if not os.path.isfile(self.net_path) or not os.path.isfile(self.model_path):
             raise RuntimeError("No model found.")
+
+        json_file = open(self.net_path, 'r')
+        loaded_model_json = json_file.read()
+        self.model = model_from_json(loaded_model_json)
         self.model.load_weights(self.model_path)
 
         ids_test = []
+
         with open(INPUT_PATH + list_file, 'r') as f:
             for line in f:
-                ids_test.append(line.strip())
+                ids_test.append(line.strip().split())
+
         nTest = len(ids_test)
         print('Testing on {} samples'.format(nTest))
 
-        if not os.path.isfile(self.model_path):
-            raise RuntimeError("No model found.")
-
-        self.model.load_weights(self.model_path)
-
-        print('Create submission...')
         str = []
         nbatch = 0
+
+        IoU = 0
         for start in range(0, nTest, self.batch_size):
             print(nbatch)
             nbatch += 1
             x_batch = []
+            y_batch = []
             images = []
             end = min(start + self.batch_size, nTest)
-            for i in range(start, end):
-                raw_img = cv2.imread('../' + ids_test[i])
-                img = cv2.resize(raw_img, (self.input_dim/self.factor, self.input_dim/self.factor), interpolation=cv2.INTER_LINEAR)
+            ids_test_batch = ids_test[start:end]
+            for image_path, mask_path in ids_test_batch:
+                print(image_path)
+                print(mask_path)
+                raw_img = cv2.imread(image_path)
+                img = cv2.resize(raw_img, (self.input_width, self.input_height), interpolation=cv2.INTER_LINEAR)
                 x_batch.append(img)
                 images.append(raw_img)
+
+                mask = cv2.imread(mask_path)[..., 0]
+                # mask = cv2.resize(mask, (self.input_width, self.input_height), interpolation=cv2.INTER_LINEAR)
+                y_batch.append(mask)
+
             x_batch = np.array(x_batch, np.float32) / 255.0
-            p_test = self.model.predict(x_batch, batch_size=self.batch_size)[0]
+
+            p_test = self.model.predict(x_batch, batch_size=self.batch_size)
 
             if self.direct_result:
                 result, probs = get_final_mask(p_test, self.threshold, apply_crf=self.apply_crf, images=images)
@@ -317,6 +337,10 @@ class HeadSeg():
                 avg_p_test = p_test[...,1] - p_test[...,0]
                 result = get_result(avg_p_test, 0)
 
+            for i in range(len(y_batch)):
+                # print(y_batch[i].shape)
+                # print(result[i].shape)
+                IoU += numpy_dice_score(y_batch[i], result[i]) / nTest
 
             str.extend(map(run_length_encode, result))
 
@@ -324,17 +348,25 @@ class HeadSeg():
             if not os.path.exists(OUTPUT_PATH):
                 os.mkdir(OUTPUT_PATH)
 
+            # for i in range(start, end):
+            #     img_path = ids_test[i][ids_test[i].rfind('/')+1:]
+            #     cv2.imwrite(OUTPUT_PATH + '{}'.format(img_path), (255 * probs[i-start]).astype(np.uint8))
             for i in range(start, end):
-                img_path = ids_test[i][ids_test[i].rfind('/')+1:]
-                cv2.imwrite(OUTPUT_PATH + '{}'.format(img_path), (255 * probs[i-start]).astype(np.uint8))
+                image_path, mask_path = ids_test[i]
+                img_path = image_path[image_path.rfind('/')+1:]
+                res_mask = (255 * result[i-start]).astype(np.uint8)
+                res_mask = np.dstack((res_mask,)*3)
+                # print(res_mask.shape)
+                cv2.imwrite(OUTPUT_PATH + '{}'.format(img_path), res_mask)
 
+        print('IoU: {}'.format(IoU))
         print("Generating submission file...")
         df = pd.DataFrame({'img': ids_test, 'rle_mask': str})
         df.to_csv('../submit/submission.csv.gz', index=False, compression='gzip')
 
 
 if __name__ == "__main__":
-    ccs = HeadSeg()
+    ccs = HeadSeg(input_width=512, input_height=512, train=True)
 
     ccs.train()
-    # ccs.test_one(list_file='lfw-deepfunneled.txt')
+    ccs.test_one(list_file='testSet.txt')

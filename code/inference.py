@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import subprocess
 
+INPUT_WIDTH = 512 # 576 # 512
+INPUT_HEIGHT = 512 # 768 # 512
 def init(model_file, weight_file):
     '''
     load model from file
@@ -34,16 +36,17 @@ if __name__ == '__main__':
     model = init('../weights/model.json', '../weights/head-segmentation-model.h5')
     # list_file = '../input/expo.txt'
     list_file = '../input/kk0915.txt'
-
+    folder_dir = 'input/kk0915/kk0915/'
     ids_test = []
     with open(list_file, 'r') as f:
         for line in f:
-            ids_test.append(line.strip())
+            ids_test.append(folder_dir + line.strip())
 
     for i in range(len(ids_test)):
+        print(i)
         raw_img = cv2.imread('../' + ids_test[i])
         H, W = raw_img.shape[:2]
-        img = cv2.resize(raw_img, (512, 512), interpolation=cv2.INTER_LINEAR)
+        img = cv2.resize(raw_img, (INPUT_WIDTH, INPUT_HEIGHT), interpolation=cv2.INTER_LINEAR)
         img = img.astype(np.float32) / 255.0
         img = img.reshape(1, *img.shape)
         pred = inference(img, model)
