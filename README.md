@@ -29,3 +29,8 @@ pspnet2
 
 - add more kk data on the same condition as the testset to the training set
 - IoU is 0.9647 on kk-252 testset.
+
+1013
+
+- use dilated convolution layers for the center block
+- IoU is 0.9689 on kk-252 testset.
