@@ -3,6 +3,7 @@ from keras.layers import Input, concatenate, Conv2D, MaxPooling2D, BatchNormaliz
 from keras.optimizers import SGD
 import keras.backend as K
 from keras.layers.advanced_activations import LeakyReLU
+from keras.layers.merge import add
 
 def dice_loss(y_true, y_pred):
     smooth = 1.
@@ -284,7 +285,16 @@ def get_unet_512(input_shape=(512, 512, 3),
     down5_pool = MaxPooling2D((2, 2), strides=(2, 2))(down5)
 
     # 8
-    center = block(down5_pool, 1024)
+    # center = block(down5_pool, 1024)
+
+    # stacked dilated convolution
+    dilate1 = Conv2D(1024, (3, 3), activation='relu', padding='same', dilation_rate=1)(down5_pool)
+    dilate2 = Conv2D(1024, (3, 3), activation='relu', padding='same', dilation_rate=2)(dilate1)
+    dilate3 = Conv2D(1024, (3, 3), activation='relu', padding='same', dilation_rate=4)(dilate2)
+    dilate4 = Conv2D(1024, (3, 3), activation='relu', padding='same', dilation_rate=8)(dilate3)
+    dilate5 = Conv2D(1024, (3, 3), activation='relu', padding='same', dilation_rate=16)(dilate4)
+    dilate6 = Conv2D(1024, (3, 3), activation='relu', padding='same', dilation_rate=32)(dilate5)
+    center = add([dilate1, dilate2, dilate3, dilate4, dilate5, dilate6])
 
     # center
     up5 = UpSampling2D((2, 2))(center)

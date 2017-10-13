@@ -42,16 +42,16 @@ class HeadSeg():
         self.learn_rate = learn_rate
         self.nb_classes = nb_classes
         # self.model = newnet.fcn_32s(input_dim, nb_classes)
-        # self.model = unet.get_unet_512(input_shape=(self.input_height, self.input_width, 3))
-        self.model =pspnet.pspnet2(input_shape=(self.input_height, self.input_width, 3))
+        self.model = unet.get_unet_512(input_shape=(self.input_height, self.input_width, 3))
+        # self.model =pspnet.pspnet2(input_shape=(self.input_height, self.input_width, 3))
         if train:
             self.net_path = '../weights/model.json'
-            self.model_path = '../weights/head-segmentation-model-large.h5'
+            self.model_path = '../weights/head-segmentation-model.h5'
             with open(self.net_path, 'w') as json_file:
                 json_file.write(self.model.to_json())
         else:
-            self.net_path = '../weights/koutou_tf_1010_large/model-large.json'
-            self.model_path = '../weights/koutou_tf_1010_large/head-segmentation-model-large.h5'
+            self.net_path = '../weights/koutou_tf_1011_data+/model.json'
+            self.model_path = '../weights/koutou_tf_1011_data+/head-segmentation-model.h5'
 
         self.threshold = 0.5
         self.direct_result = True
@@ -67,7 +67,7 @@ class HeadSeg():
         with open(INPUT_PATH + 'trainSet.txt', 'r') as f:
             for line in f:
                 ids_train.append(line.strip().split())
-        self.ids_train_split, self.ids_valid_split = train_test_split(ids_train, test_size=0.2, random_state=42)
+        self.ids_train_split, self.ids_valid_split = train_test_split(ids_train, test_size=0.15, random_state=42)
 
         # index = list(range(len(self.train_imgs)))
         # random.shuffle(index)
@@ -366,7 +366,7 @@ class HeadSeg():
 
 
 if __name__ == "__main__":
-    ccs = HeadSeg(input_width=576, input_height=768)
+    ccs = HeadSeg(input_width=512, input_height=512, train=True)
 
     ccs.train()
     ccs.test_one(list_file='testSet.txt')

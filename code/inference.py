@@ -4,8 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import subprocess
 
-INPUT_WIDTH = 576 # 512
-INPUT_HEIGHT = 768 # 512
+INPUT_WIDTH = 512 # 576 # 512
+INPUT_HEIGHT = 512 # 768 # 512
 def init(model_file, weight_file):
     '''
     load model from file
@@ -33,7 +33,7 @@ def inference(image, model):
 
 
 if __name__ == '__main__':
-    model = init('../weights/model-large.json', '../weights/head-segmentation-model-large.h5')
+    model = init('../weights/model.json', '../weights/head-segmentation-model.h5')
     # list_file = '../input/expo.txt'
     list_file = '../input/kk0915.txt'
     folder_dir = 'input/kk0915/kk0915/'
