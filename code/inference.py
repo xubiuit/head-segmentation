@@ -62,7 +62,7 @@ if __name__ == '__main__':
         res = mask * raw_img
 
         # convert background color from black(0) to white(255)
-        res = (res + 255*np.logical_and(np.logical_not(mask), np.logical_not(res))).astype(np.uint8)
+        res_3chan = (res + 255*np.logical_and(np.logical_not(mask), np.logical_not(res))).astype(np.uint8)
 
         # show image
         f, (ax1, ax2) = plt.subplots(1, 2, sharey=True)
@@ -70,11 +70,16 @@ if __name__ == '__main__':
         ax1.imshow(cv2.cvtColor(raw_img, cv2.COLOR_BGR2RGB), vmax=1.5, vmin=-0.4)
         ax1.set_title('Input')
         ax2.axis('off')
-        ax2.imshow(cv2.cvtColor(res, cv2.COLOR_BGR2RGB))
+
+        red, green, blue = cv2.split(raw_img)
+        res_4chan = cv2.merge([red, green, blue, 255*mask[...,0]])
+
+        ax2.imshow(cv2.cvtColor(res_4chan, cv2.COLOR_BGR2RGBA))
         ax2.set_title('Output')
 
         plt.savefig('../output/demo/{}.jpg'.format(i))
-        cv2.imwrite('../tmp_res.png', mask*raw_img)
+        # cv2.imwrite('../tmp_res.png', mask*raw_img)
+        cv2.imwrite('../tmp_res.png', res_4chan)
     subprocess.call([
         'ffmpeg', '-framerate', '4', '-i', '../output/demo/%d.jpg', '-r', '30', '-pix_fmt', 'yuv420p', '../headseg_demo.mp4'
     ])
