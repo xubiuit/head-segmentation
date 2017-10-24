@@ -30,7 +30,22 @@ pspnet2
 - add more kk data on the same condition as the testset to the training set
 - IoU is 0.9647 on kk-252 testset.
 
-1013
+1013+dilated
 
 - use dilated convolution layers for the center block
 - IoU is 0.9689 on kk-252 testset.
+
+1024
+
+- correct ground truth annotation
+- training record: 
+```
+2520s - loss: 0.1011 - dice_score: 0.9619 - weightedLoss: 0.7321 - bce_dice_loss: 0.1011 - val_loss: 0.1267 - val_dice_score: 0.9561 - val_weightedLoss: 0.7388 - val_bce_dice_loss: 0.1267
+
+... ...
+
+Epoch 00031: reducing learning rate to 1.00000001169e-08.
+2518s - loss: 0.0990 - dice_score: 0.9628 - weightedLoss: 0.7310 - bce_dice_loss: 0.0990 - val_loss: 0.1300 - val_dice_score: 0.9570 - val_weightedLoss: 0.7376 - val_bce_dice_loss: 0.1300
+```
+
+- IoU is 0.969942334371 on kk-252 testset.
