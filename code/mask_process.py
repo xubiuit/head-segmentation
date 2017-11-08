@@ -27,10 +27,16 @@ def generate_list(images_folder, masks_folder):
     ### TODO: pair mask file path with image file path
 
 if __name__ == '__main__':
-    masks_folder = '/home/jin/VSS/koutou/data/kk/mask'
+    # masks_folder = '/home/jin/VSS/koutou/data/kk/mask'
+    # mask_process(masks_folder)
+    #
+    # images_folder = '/home/jin/VSS/koutou/data/kk/image'
+    # generate_list(images_folder, masks_folder)
+
+    masks_folder = '../input/20171107/mask201709'
     mask_process(masks_folder)
 
-    images_folder = '/home/jin/VSS/koutou/data/kk/image'
+    images_folder = '../input/20171107/src201709'
     generate_list(images_folder, masks_folder)
 
 
