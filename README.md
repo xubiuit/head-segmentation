@@ -51,7 +51,7 @@ Epoch 00031: reducing learning rate to 1.00000001169e-08.
 - IoU is 0.969942334371 on kk-252 testset.
 
 1108
-- rule out bad training data
+- rule out bad training and test samples
 - training record:
 ```
 2717s - loss: 0.0990 - dice_score: 0.9634 - weightedLoss: 0.7290 - bce_dice_loss: 0.0990 - val_loss: 0.1177 - val_dice_score: 0.9602 - val_weightedLoss: 0.7334 - val_bce_dice_loss: 0.1177
