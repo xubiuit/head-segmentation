@@ -77,7 +77,7 @@ if __name__ == '__main__':
         ax2.imshow(cv2.cvtColor(res_4chan, cv2.COLOR_BGR2RGBA))
         ax2.set_title('Output')
 
-        plt.savefig('../output/demo/{}.jpg'.format(i))
+        plt.savefig('../output/tmp/{}.jpg'.format(i))
         # cv2.imwrite('../tmp_res.png', mask*raw_img)
         cv2.imwrite('../tmp_res.png', res_4chan)
     subprocess.call([

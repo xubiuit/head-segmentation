@@ -36,10 +36,11 @@ def pair_sample_and_gt(portrait_list, mask_list):
         imgname = portrait[portrait.rfind('/')+1:]
         pos = imgname.rfind('.')
         imgid = imgname[:pos]
-        print('imgname: ', imgname)
+        # print('imgname: ', imgname)
         maskname = imgid + '_mask' + '.png' # + imgname[pos:]
-        print('maskname: ', maskname)
-	maskname_list = map(lambda x: x[x.rfind('/')+1:], mask_list)
+        # print('maskname: ', maskname)
+
+        maskname_list = map(lambda x: x[x.rfind('/')+1:], mask_list)
 
         if maskname in maskname_list:
             mask_dict[maskname] = portrait
@@ -52,7 +53,7 @@ def pair_sample_and_gt(portrait_list, mask_list):
             all_list.append([mask_dict[maskname], mask])
     return all_list
 
-def split_train_test_set(all_list, ratio = 1):
+def split_train_test_set(all_list, ratio = 1, version='v0.0'):
     '''
     Split training and test sets from all.
     :param all_list: 
@@ -68,8 +69,8 @@ def split_train_test_set(all_list, ratio = 1):
     print("# of test samples: ", Nt)
 
     cwd = os.getcwd()
-    train_file = os.path.join(cwd, 'trainSet.txt')
-    test_file = os.path.join(cwd, 'testSet.txt')
+    train_file = os.path.join(cwd, 'trainSet-{}-{}.txt'.format(ratio, version))
+    test_file = os.path.join(cwd, 'testSet-{}-{}.txt'.format(ratio, version))
     if os.path.exists(train_file):
         os.remove(train_file)
     if os.path.exists(test_file):
@@ -86,9 +87,17 @@ def split_train_test_set(all_list, ratio = 1):
 
 if __name__ == "__main__":
     filename = str(sys.argv[1])
+    try:
+        train_rate = float(sys.argv[2])
+    except:
+        train_rate = 0.9
+    try:
+        version = str(sys.argv[3])
+    except:
+        version = "v0.0"
     portrait_list, mask_list = split_sample_and_gt(filename)
     print(portrait_list)
     #transform_image(mask_list)
     all_list = pair_sample_and_gt(portrait_list, mask_list)
     print(len(all_list))
-    split_train_test_set(all_list, 0.9)
+    split_train_test_set(all_list, train_rate, version)
