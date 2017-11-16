@@ -57,6 +57,14 @@ Epoch 00031: reducing learning rate to 1.00000001169e-08.
 2717s - loss: 0.0990 - dice_score: 0.9634 - weightedLoss: 0.7290 - bce_dice_loss: 0.0990 - val_loss: 0.1177 - val_dice_score: 0.9602 - val_weightedLoss: 0.7334 - val_bce_dice_loss: 0.1177
 Epoch 16/100
 ```
-
-
 - IoU is 0.974359960128 on kk-111 testset
+
+1116
+- add more data and retrain
+- training record:
+```
+Epoch 00027: reducing learning rate to 1.00000001169e-08.
+2491s - loss: 0.0923 - dice_score: 0.9616 - weightedLoss: 0.7364 - bce_dice_loss: 0.0923 - val_loss: 0.0954 - val_dice_score: 0.9602 - val_weightedLoss: 0.7383 - val_bce_dice_loss: 0.0954
+Epoch 00027: early stopping
+```
+- IoU is 0.972726227225 on kk-327 testset
