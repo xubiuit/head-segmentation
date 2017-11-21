@@ -30,8 +30,11 @@ np.set_printoptions(threshold='nan')
 
 INPUT_PATH = '../input/'
 OUTPUT_PATH = '../output/test-result/'
+# TRAIN_DATASET = "trainSet.txt"
+# TEST_DATASET = "testSet.txt"
 
-
+TRAIN_DATASET = "trainSet-0.9-v2.3u.txt"
+TEST_DATASET = "testSet-0.9-v2.3u.txt"
 
 class HeadSeg():
     def __init__(self, train = True, input_width=512, input_height=512, batch_size=2, epochs=100, learn_rate=1e-2, nb_classes=2):
@@ -64,7 +67,7 @@ class HeadSeg():
 
     def load_data(self):
         ids_train = []
-        with open(INPUT_PATH + 'trainSet.txt', 'r') as f:
+        with open(INPUT_PATH + TRAIN_DATASET, 'r') as f:
             for line in f:
                 ids_train.append(line.strip().split())
         self.ids_train_split, self.ids_valid_split = train_test_split(ids_train, test_size=0.15, random_state=42)
@@ -370,4 +373,4 @@ if __name__ == "__main__":
     ccs = HeadSeg(input_width=512, input_height=512, train=True)
 
     ccs.train()
-    ccs.test_one(list_file='testSet.txt')
+    ccs.test_one(list_file=TEST_DATASET)

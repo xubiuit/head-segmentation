@@ -24,5 +24,9 @@ if __name__ == '__main__':
     input_folders = os.path.join(cwd, folder)
     imagelist = getList(input_folders)
 
-    with open(os.path.join(cwd, 'imagelist.txt'), 'w') as fl:
+    try:
+        out_file = str(sys.argv[2])
+    except:
+        out_file = 'imagelist.txt'
+    with open(os.path.join(cwd, out_file), 'w') as fl:
         pickle.dump(imagelist, fl)
