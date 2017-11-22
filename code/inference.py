@@ -34,9 +34,10 @@ def inference(image, model):
 
 if __name__ == '__main__':
     model = init('../weights/model.json', '../weights/head-segmentation-model.h5')
-    # list_file = '../input/expo.txt'
-    list_file = '../input/kk0915.txt'
+    list_file = '../input/expo.txt'
     folder_dir = 'input/kk0915/kk0915/'
+    # list_file = '../input/kk0915.txt'
+    # folder_dir = 'input/kk0915/kk0915/'
     ids_test = []
     with open(list_file, 'r') as f:
         for line in f:

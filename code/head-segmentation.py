@@ -46,6 +46,7 @@ class HeadSeg():
         self.nb_classes = nb_classes
         # self.model = newnet.fcn_32s(input_dim, nb_classes)
         self.model = unet.get_unet_512(input_shape=(self.input_height, self.input_width, 3))
+        self.model.summary()
         # self.model =pspnet.pspnet2(input_shape=(self.input_height, self.input_width, 3))
         if train:
             self.net_path = '../weights/model.json'
