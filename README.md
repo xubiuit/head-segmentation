@@ -70,10 +70,10 @@ Epoch 00027: early stopping
 - IoU is 0.972726227225 on kk-327 testset
 
 1120 (v2.3u)
-- upper-body segmentation
+- portrait segmentation
 - training record:
 ```
 Epoch 30/100
 921s - loss: 0.1084 - dice_score: 0.9678 - weightedLoss: 0.6071 - bce_dice_loss: 0.1084 - val_loss: 0.1480 - val_dice_score: 0.9608 - val_weightedLoss: 0.6143 - val_bce_dice_loss: 0.1480
 ```
-- IoU is 0.969091977837 on upperbody-352 testset
+- IoU is 0.969091977837 on portrait-352 testset
