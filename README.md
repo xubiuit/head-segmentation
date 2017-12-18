@@ -79,5 +79,5 @@ Epoch 30/100
 - IoU is 0.969091977837 on portrait-352 testset
 
 1218 (v2.4)
-- add more data and retrain (5780+4199=9979 training images)
+- add more data and retrain (5780+4199=9979 train & validation images)
 - IoU is xxxx on head-467 testset
