@@ -309,6 +309,28 @@ class HeadSeg():
         df.to_csv('../submit/submission.csv.gz', index=False, compression='gzip')
 
 
+def resize_images(input_folder = '/home/jin/shenzhenyuan/context-encoder-master/images/prod_models/*'):
+    import glob, os
+    df = glob.glob(input_folder)
+
+    for path in df:
+        id = path[1+path.rfind('/'):path.rfind('_im')]
+        if int(id) > 12:
+            continue
+        print(path)
+        img = cv2.imread(path)
+        H, W = img.shape[:2]
+        # img = img[H/2-W/2: H/2+W/2, :]
+        img = img[: W, :]
+
+        new_img = cv2.resize(img, (227,227), interpolation=cv2.INTER_LINEAR)
+        print(new_img.shape)
+
+        # from PIL import Image
+        # print(path[:path.rfind('.')]+'_.png')
+        # Image.fromarray(new_img).save(path[:path.rfind('.')]+'_.png')
+        cv2.imwrite(path, new_img)
+
 if __name__ == "__main__":
     ccs = HeadSeg()
 

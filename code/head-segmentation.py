@@ -30,11 +30,14 @@ np.set_printoptions(threshold='nan')
 
 INPUT_PATH = '../input/'
 OUTPUT_PATH = '../output/test-result/'
-# TRAIN_DATASET = "trainSet.txt"
-# TEST_DATASET = "testSet.txt"
 
-TRAIN_DATASET = "trainSet-0.9-v2.3u.txt"
-TEST_DATASET = "testSet-0.9-v2.3u.txt"
+# train/test dataset for head segmentation
+TRAIN_DATASET = "trainSet.txt"
+TEST_DATASET = "testSet.txt"
+
+# train/test dataset for portrait segmentation
+# TRAIN_DATASET = "trainSet-0.9-v2.3u.txt"
+# TEST_DATASET = "testSet-0.9-v2.3u.txt"
 
 class HeadSeg():
     def __init__(self, train = True, input_width=512, input_height=512, batch_size=2, epochs=100, learn_rate=1e-2, nb_classes=2):
@@ -46,6 +49,7 @@ class HeadSeg():
         self.nb_classes = nb_classes
         # self.model = newnet.fcn_32s(input_dim, nb_classes)
         self.model = unet.get_unet_512(input_shape=(self.input_height, self.input_width, 3))
+        # self.model = pspnet.pspnet2(input_shape=(self.input_height, self.input_width, 3))
         self.model.summary()
         # self.model =pspnet.pspnet2(input_shape=(self.input_height, self.input_width, 3))
         if train:
@@ -54,8 +58,8 @@ class HeadSeg():
             with open(self.net_path, 'w') as json_file:
                 json_file.write(self.model.to_json())
         else:
-            self.net_path = '../weights/koutou_tf_1011_data+/model.json'
-            self.model_path = '../weights/koutou_tf_1011_data+/head-segmentation-model.h5'
+            self.net_path = '../weights/koutou_tf_1218/model.json'
+            self.model_path = '../weights/koutou_tf_1218/head-segmentation-model.h5'
 
         self.threshold = 0.5
         self.direct_result = True
@@ -93,7 +97,7 @@ class HeadSeg():
         # train_generator = train_datagen.flow(x_train[train_index], y_train[train_index], shuffle=True, batch_size=batch_size, seed=int(time.time()))
         # val_generator = val_datagen.flow(x_train[test_index], y_train[test_index], shuffle=False, batch_size=batch_size)
 
-        # self.model.load_weights(self.model_path)
+        self.model.load_weights(self.model_path)
         nTrain = len(self.ids_train_split)
         nValid = len(self.ids_valid_split)
         print('Training on {} samples'.format(nTrain))

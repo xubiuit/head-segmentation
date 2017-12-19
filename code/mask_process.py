@@ -33,11 +33,11 @@ if __name__ == '__main__':
     # images_folder = '/home/jin/VSS/koutou/data/kk/image'
     # generate_list(images_folder, masks_folder)
 
-    masks_folder = '../input/data/20171001-1031_mask'
+    masks_folder = '../input/data/20171101-20171108-mask'
     mask_process(masks_folder)
 
-    images_folder = '../input/20171107/src201709'
-    generate_list(images_folder, masks_folder)
+    # images_folder = '../input/20171107/src201709'
+    # generate_list(images_folder, masks_folder)
 
 
 
