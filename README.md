@@ -80,4 +80,8 @@ Epoch 30/100
 
 1218 (v2.4)
 - add more data and retrain (5780+4199=9979 train & validation images)
-- IoU is xxxx on head-467 testset
+- training record:
+```
+2844s - loss: 0.0858 - dice_score: 0.9648 - weightedLoss: 0.7299 - bce_dice_loss: 0.0858 - val_loss: 0.0791 - val_dice_score: 0.9650 - val_weightedLoss: 0.7288 - val_bce_dice_loss: 0.0791
+```
+- IoU is 0.974909528025 on head-467 testset
