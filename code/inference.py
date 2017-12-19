@@ -33,9 +33,9 @@ def inference(image, model):
 
 
 if __name__ == '__main__':
-    model = init('../weights/model.json', '../weights/head-segmentation-model.h5')
+    model = init('../weights/koutou_tf_1116/model.json', '../weights/koutou_tf_1116/head-segmentation-model.h5')
     list_file = '../input/expo.txt'
-    folder_dir = 'input/kk0915/kk0915/'
+    folder_dir = ''
     # list_file = '../input/kk0915.txt'
     # folder_dir = 'input/kk0915/kk0915/'
     ids_test = []
@@ -82,5 +82,5 @@ if __name__ == '__main__':
         # cv2.imwrite('../tmp_res.png', mask*raw_img)
         cv2.imwrite('../tmp_res.png', res_4chan)
     subprocess.call([
-        'ffmpeg', '-framerate', '4', '-i', '../output/demo/%d.jpg', '-r', '30', '-pix_fmt', 'yuv420p', '../headseg_demo.mp4'
+        'ffmpeg', '-framerate', '4', '-i', '../output/tmp/%d.jpg', '-r', '30', '-pix_fmt', 'yuv420p', '../headseg_demo.mp4'
     ])
