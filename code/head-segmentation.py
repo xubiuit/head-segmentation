@@ -17,7 +17,6 @@ from keras.models import model_from_json
 from sklearn.model_selection import KFold
 
 from helpers import *
-import newnet
 import math
 import glob
 import random
@@ -25,6 +24,7 @@ from PIL import Image
 from sklearn.model_selection import train_test_split
 import unet
 import pspnet
+import tiramisunet
 
 np.set_printoptions(threshold='nan')
 
@@ -40,7 +40,7 @@ TEST_DATASET = "testSet.txt"
 # TEST_DATASET = "testSet-0.9-v2.3u.txt"
 
 class HeadSeg():
-    def __init__(self, train = True, input_width=512, input_height=512, batch_size=2, epochs=100, learn_rate=1e-2, nb_classes=2):
+    def __init__(self, train = True, input_width=224, input_height=224, batch_size=1, epochs=100, learn_rate=1e-2, nb_classes=2):
         self.input_width = input_width
         self.input_height = input_height
         self.batch_size = batch_size
@@ -48,7 +48,8 @@ class HeadSeg():
         self.learn_rate = learn_rate
         self.nb_classes = nb_classes
         # self.model = newnet.fcn_32s(input_dim, nb_classes)
-        self.model = unet.get_unet_512(input_shape=(self.input_height, self.input_width, 3))
+        # self.model = unet.get_unet_512(input_shape=(self.input_height, self.input_width, 3))
+        self.model = tiramisunet.get_tiramisunet(input_shape=(self.input_height, self.input_width, 3))
         # self.model = pspnet.pspnet2(input_shape=(self.input_height, self.input_width, 3))
         self.model.summary()
         # self.model =pspnet.pspnet2(input_shape=(self.input_height, self.input_width, 3))
@@ -97,7 +98,10 @@ class HeadSeg():
         # train_generator = train_datagen.flow(x_train[train_index], y_train[train_index], shuffle=True, batch_size=batch_size, seed=int(time.time()))
         # val_generator = val_datagen.flow(x_train[test_index], y_train[test_index], shuffle=False, batch_size=batch_size)
 
-        self.model.load_weights(self.model_path)
+        try:
+            self.model.load_weights(self.model_path)
+        except:
+            pass
         nTrain = len(self.ids_train_split)
         nValid = len(self.ids_valid_split)
         print('Training on {} samples'.format(nTrain))
