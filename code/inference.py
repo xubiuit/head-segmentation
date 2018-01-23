@@ -33,7 +33,7 @@ def inference(image, model):
 
 
 if __name__ == '__main__':
-    model = init('../weights/koutou_tf_1116/model.json', '../weights/koutou_tf_1116/head-segmentation-model.h5')
+    model = init('../weights/koutou_tf_1218/model.json', '../weights/koutou_tf_1218/head-segmentation-model.h5')
     list_file = '../input/expo.txt'
     folder_dir = ''
     # list_file = '../input/kk0915.txt'
@@ -80,7 +80,13 @@ if __name__ == '__main__':
 
         plt.savefig('../output/tmp/{}.jpg'.format(i))
         # cv2.imwrite('../tmp_res.png', mask*raw_img)
+        print(res_4chan.shape)
         cv2.imwrite('../tmp_res.png', res_4chan)
+        # from PIL.Image import Image
+        # from scipy.misc import imsave
+        # imsave('../' + ids_test[i], res_4chan)
+        pos = ids_test[i].rfind('.')
+        cv2.imwrite('../'+ids_test[i][:pos]+'.png', res_4chan)
     subprocess.call([
         'ffmpeg', '-framerate', '4', '-i', '../output/tmp/%d.jpg', '-r', '30', '-pix_fmt', 'yuv420p', '../headseg_demo.mp4'
     ])
