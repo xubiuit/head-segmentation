@@ -17,6 +17,7 @@ from keras.models import model_from_json
 from sklearn.model_selection import KFold
 
 from helpers import *
+import newnet
 import math
 import glob
 import random
@@ -40,7 +41,7 @@ TEST_DATASET = "testSet.txt"
 # TEST_DATASET = "testSet-0.9-v2.3u.txt"
 
 class HeadSeg():
-    def __init__(self, train = True, input_width=224, input_height=224, batch_size=1, epochs=100, learn_rate=1e-2, nb_classes=2):
+    def __init__(self, train = True, input_width=512, input_height=512, batch_size=1, epochs=100, learn_rate=1e-2, nb_classes=2):
         self.input_width = input_width
         self.input_height = input_height
         self.batch_size = batch_size
