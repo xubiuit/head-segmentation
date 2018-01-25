@@ -85,3 +85,10 @@ Epoch 30/100
 2844s - loss: 0.0858 - dice_score: 0.9648 - weightedLoss: 0.7299 - bce_dice_loss: 0.0858 - val_loss: 0.0791 - val_dice_score: 0.9650 - val_weightedLoss: 0.7288 - val_bce_dice_loss: 0.0791
 ```
 - IoU is 0.974909528025 on head-467 testset
+
+0123 (v2.5) TODO
+- add TiramisuNet
+- training record:
+```
+```
+- IoU is 0.XXXX on head-467 testset
