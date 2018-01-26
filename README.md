@@ -86,7 +86,7 @@ Epoch 30/100
 ```
 - IoU is 0.974909528025 on head-467 testset
 
-0123 (v2.5) TODO
+0123 (v2.5)
 - use TiramisuNet
 - training record:
 ```
