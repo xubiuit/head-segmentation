@@ -87,8 +87,9 @@ Epoch 30/100
 - IoU is 0.974909528025 on head-467 testset
 
 0123 (v2.5) TODO
-- add TiramisuNet
+- use TiramisuNet
 - training record:
 ```
+ - 5692s - loss: 0.0718 - dice_score: 0.9704 - weightedLoss: 0.7157 - bce_dice_loss: 0.0718 - val_loss: 0.1115 - val_dice_score: 0.9524 - val_weightedLoss: 0.7410 - val_bce_dice_loss: 0.1115
 ```
-- IoU is 0.XXXX on head-467 testset
+- IoU is 0.95XXXX on head-467 testset
