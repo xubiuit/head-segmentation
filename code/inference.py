@@ -33,7 +33,7 @@ def inference(image, model):
 
 
 if __name__ == '__main__':
-    model = init('../weights/koutou_tf_1218/model.json', '../weights/koutou_tf_1218/head-segmentation-model.h5')
+    model = init('../weights/koutou_tf_0123/model.json', '../weights/koutou_tf_0123/head-segmentation-model.h5')
     list_file = '../input/expo.txt'
     folder_dir = ''
     # list_file = '../input/kk0915.txt'

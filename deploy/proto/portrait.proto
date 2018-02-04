@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package portrait;
+
+service PortraitBackend {
+  rpc Portrait(PortraitRequest) returns (PortraitResponse) {
+  }
+}
+
+message Rect {
+  int32 w = 1;
+  int32 h = 2;
+}
+
+message PortraitRequest {
+  string request_id = 1;  // 请求标识
+  bytes input_image = 2;     // 原始头像
+  Rect rect = 3;          // 脸部识别区域
+}
+
+message PortraitResponse {
+  bytes completion_image = 1;
+}
