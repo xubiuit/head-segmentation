@@ -50,7 +50,7 @@ if __name__ == '__main__':
         img = cv2.resize(raw_img, (INPUT_WIDTH, INPUT_HEIGHT), interpolation=cv2.INTER_LINEAR)
         img = img.astype(np.float32) / 255.0
         img = img.reshape(1, *img.shape)
-        pred = inference(img, model)
+        pred = inference(img, model)[0]
         # print pred.shape
         # print pred.dtype
 
