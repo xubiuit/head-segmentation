@@ -100,4 +100,4 @@ Epoch 30/100
 ``` 
 - 4803s - loss: 0.1698 - conv2d_66_loss: 0.0865 - average_1_loss: 0.0833 - val_loss: 0.1561 - val_conv2d_66_loss: 0.0790 - val_average_1_loss: 0.0771
 ```
-- IoU is 0.973500913981 on head-467 testset
+- IoU is 0.972961458863 after 1st Unet stage, and 0.973500913981 after 2nd refineNet stage on head-467 testset
