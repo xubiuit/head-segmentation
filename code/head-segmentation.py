@@ -49,8 +49,8 @@ class HeadSeg():
         self.learn_rate = learn_rate
         self.nb_classes = nb_classes
         # self.model = newnet.fcn_32s(input_dim, nb_classes)
-        # self.model = unet.get_unet_512(input_shape=(self.input_height, self.input_width, 3))
-        self.model = tiramisunet.get_tiramisunet(input_shape=(self.input_height, self.input_width, 3))
+        self.model = unet.get_unet_512(input_shape=(self.input_height, self.input_width, 3))
+        # self.model = tiramisunet.get_tiramisunet(input_shape=(self.input_height, self.input_width, 3))
         # self.model = pspnet.pspnet2(input_shape=(self.input_height, self.input_width, 3))
         self.model.summary()
         # self.model =pspnet.pspnet2(input_shape=(self.input_height, self.input_width, 3))
@@ -151,7 +151,7 @@ class HeadSeg():
 
                     x_batch = np.array(x_batch, np.float32) / 255.0
                     y_batch = np.array(y_batch, np.float32)
-                    yield x_batch, [y_batch]
+                    yield x_batch, [y_batch, y_batch]
 
         def valid_generator():
             while True:
@@ -180,7 +180,7 @@ class HeadSeg():
 
                     x_batch = np.array(x_batch, np.float32) / 255.0
                     y_batch = np.array(y_batch, np.float32)
-                    yield x_batch, [y_batch]
+                    yield x_batch, [y_batch, y_batch]
 
 
         # opt = optimizers.SGD(lr=self.learn_rate, momentum=0.9)
@@ -206,8 +206,11 @@ class HeadSeg():
         opt = optimizers.RMSpropAccum(lr=1e-4, accumulator=16)
 
         self.model.compile(optimizer=opt,
-                           loss=[bce_dice_loss],
-                           metrics=[dice_score, weightedLoss, bce_dice_loss])
+                           loss=bce_dice_loss,
+                           loss_weights=[1, 1],
+                           metrics=[dice_score]
+                           # metrics=[dice_score, weightedLoss, bce_dice_loss]
+                           )
 
         self.model.fit_generator(
             generator=train_generator(),
@@ -343,7 +346,7 @@ class HeadSeg():
 
             x_batch = np.array(x_batch, np.float32) / 255.0
 
-            p_test = self.model.predict(x_batch, batch_size=self.batch_size)
+            p_test = self.model.predict(x_batch, batch_size=self.batch_size)[-1]
 
             if self.direct_result:
                 result, probs = get_final_mask(p_test, self.threshold, apply_crf=self.apply_crf, images=images)
