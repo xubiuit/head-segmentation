@@ -29,11 +29,11 @@ def inference(image, model):
     # print image.shape
     # print image.dtype
     # return model.predict(image, batch_size=1)
-    return model.predict(image, batch_size=1)[0]
+    return model.predict(image, batch_size=1)[-1]
 
 
 if __name__ == '__main__':
-    model = init('../weights/koutou_tf_0123/model.json', '../weights/koutou_tf_0123/head-segmentation-model.h5')
+    model = init('../weights/koutou_tf_0211/model.json', '../weights/koutou_tf_0211/head-segmentation-model.h5')
     list_file = '../input/expo.txt'
     folder_dir = ''
     # list_file = '../input/kk0915.txt'

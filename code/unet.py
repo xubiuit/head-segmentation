@@ -3,7 +3,7 @@ from keras.layers import Input, concatenate, Conv2D, MaxPooling2D, BatchNormaliz
 from keras.optimizers import SGD
 import keras.backend as K
 from keras.layers.advanced_activations import LeakyReLU
-from keras.layers.merge import add
+from keras.layers.merge import add, average
 
 def dice_loss(y_true, y_pred):
     smooth = 1.
@@ -329,13 +329,17 @@ def get_unet_512(input_shape=(512, 512, 3),
     # 512
 
     classify = Conv2D(num_classes, (1, 1), activation='sigmoid')(up0)
-    mask = classify
-    model = Model(inputs=inputs, outputs=[classify])
+    # mask = classify
     # model = Model(inputs=inputs, outputs=[classify])
-
+    # model.load_weights('../weights/head-segmentation-model.h5')
+    # return model
     # model.compile(optimizer=SGD(lr=0.01, momentum=0.9), loss='binary_crossentropy', metrics=[dice_loss])
 
-    return model
+    inputs2 = concatenate([inputs, classify])
+    outputs2 = block2(inputs2, 64)
+    outputs2 = average([classify, outputs2])
+    model2 = Model(inputs=inputs, outputs=[classify, outputs2])
+    return model2
 
 
 def block(in_layer, nchan, relu=False):
@@ -529,7 +533,32 @@ def block(in_layer, nchan, relu=False):
 #
 #     return model
 
+def block2(in_layer, nchan, num_classes=1, relu=False):
+    b1 = Conv2D(nchan, (3, 3), padding='same', kernel_initializer='he_uniform')(in_layer)
+    # b1 = BatchNormalization()(b1)
+    if relu:
+        b1 = Activation('relu')(b1)
+    else:
+        b1 = LeakyReLU(0.0001)(b1)
 
+    b2 = Conv2D(nchan, (3, 3), padding='same')(b1)
+    # b2 = BatchNormalization()(b2)
+    if relu:
+        b2 = Activation('relu')(b2)
+    else:
+        b2 = LeakyReLU(0.0001)(b2)
+
+    b3 = Conv2D(nchan, (3, 3), padding='same')(b2)
+    # b3 = BatchNormalization()(b3)
+    if relu:
+        b3 = Activation('relu')(b3)
+    else:
+        b3 = LeakyReLU(0.0001)(b3)
+
+    b4 = Conv2D(num_classes, (3, 3), padding='same', activation='sigmoid')(b3)
+    # b4 = BatchNormalization()(b4)
+    # b4 = Activation('sigmoid')(b4)
+    return b4
 
 def get_unet_1024(input_shape=(512, 512, 3),
                  num_classes=1):
