@@ -93,3 +93,11 @@ Epoch 30/100
  - 5692s - loss: 0.0718 - dice_score: 0.9704 - weightedLoss: 0.7157 - bce_dice_loss: 0.0718 - val_loss: 0.1115 - val_dice_score: 0.9524 - val_weightedLoss: 0.7410 - val_bce_dice_loss: 0.1115
 ```
 - IoU is 0.95XXXX on head-467 testset
+
+0211 (v2.6)
+- add refineNet after the 1st stage UNet (references: Deep Image Matting)
+- training record:
+``` 
+- 4803s - loss: 0.1698 - conv2d_66_loss: 0.0865 - average_1_loss: 0.0833 - val_loss: 0.1561 - val_conv2d_66_loss: 0.0790 - val_average_1_loss: 0.0771
+```
+- IoU is 0.973500913981 on head-467 testset
