@@ -54,6 +54,10 @@ if __name__ == '__main__':
 
         prob = cv2.resize(pred, (W, H))
 
+        # pred2 = np.flip(inference(np.flip(img, 2), model)[0], 2)
+        # prob = 0.5 * (prob + cv2.resize(pred2, (W, H)))
+
+
         mask = prob > 0.5
 
         mask = np.dstack((mask,)*3).astype(np.uint8)
@@ -84,7 +88,7 @@ if __name__ == '__main__':
         # from scipy.misc import imsave
         # imsave('../' + ids_test[i], res_4chan)
         pos = ids_test[i].rfind('.')
-        cv2.imwrite('../'+ids_test[i][:pos]+'.png', res_4chan)
+        # cv2.imwrite('../'+ids_test[i][:pos]+'.png', res_4chan)
     subprocess.call([
         'ffmpeg', '-framerate', '4', '-i', '../output/tmp/%d.jpg', '-r', '30', '-pix_fmt', 'yuv420p', '../headseg_demo.mp4'
     ])

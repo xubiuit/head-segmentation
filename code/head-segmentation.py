@@ -344,6 +344,11 @@ class HeadSeg():
                 result = get_result(avg_p_test, 0)
 
             for i in range(len(y_batch)):
+<<<<<<< HEAD
+=======
+                print(y_batch[i].shape, y_batch[i].dtype)
+                print(result[i].shape, result[i].dtype)
+>>>>>>> 23b7daf938a1ddd2a159ac2105ce9553e9c59a2b
                 IoU += numpy_dice_score(y_batch[i], result[i]) / nTest
 
             str.extend(map(run_length_encode, result))
@@ -366,7 +371,13 @@ class HeadSeg():
 
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     ccs = HeadSeg(input_width=512, input_height=512, train=IS_TRAIN)
     if IS_TRAIN:
         ccs.train()
+=======
+    ccs = HeadSeg(input_width=576, input_height=768, train=True)
+
+    ccs.train()
+>>>>>>> 23b7daf938a1ddd2a159ac2105ce9553e9c59a2b
     ccs.test_one(list_file=TEST_DATASET)
