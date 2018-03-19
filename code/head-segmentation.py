@@ -15,7 +15,7 @@ from keras.models import model_from_json
 
 # from sklearn.cross_validation import KFold, StratifiedKFold
 from sklearn.model_selection import KFold
-
+from constants import *
 from helpers import *
 import newnet
 import math
@@ -28,17 +28,6 @@ import pspnet
 import tiramisunet
 
 np.set_printoptions(threshold='nan')
-
-INPUT_PATH = '../input/'
-OUTPUT_PATH = '../output/test-result/'
-
-# train/test dataset for head segmentation
-TRAIN_DATASET = "trainSet.txt"
-TEST_DATASET = "testSet.txt"
-
-# train/test dataset for portrait segmentation
-# TRAIN_DATASET = "trainSet-0.9-v2.3u.txt"
-# TEST_DATASET = "testSet-0.9-v2.3u.txt"
 
 class HeadSeg():
     def __init__(self, train = True, input_width=512, input_height=512, batch_size=1, epochs=100, learn_rate=1e-2, nb_classes=2):
@@ -60,8 +49,8 @@ class HeadSeg():
             with open(self.net_path, 'w') as json_file:
                 json_file.write(self.model.to_json())
         else:
-            self.net_path = '../weights/koutou_tf_1218/model.json'
-            self.model_path = '../weights/koutou_tf_1218/head-segmentation-model.h5'
+            self.net_path = '../weights/{}/model.json'.format(MODEL_DIR)
+            self.model_path = '../weights/{}/head-segmentation-model.h5'.format(MODEL_DIR)
 
         self.threshold = 0.5
         self.direct_result = True
@@ -151,7 +140,10 @@ class HeadSeg():
 
                     x_batch = np.array(x_batch, np.float32) / 255.0
                     y_batch = np.array(y_batch, np.float32)
-                    yield x_batch, [y_batch, y_batch]
+                    if USE_REFINE_NET:
+                        yield x_batch, [y_batch, y_batch]
+                    else:
+                        yield x_batch, y_batch
 
         def valid_generator():
             while True:
@@ -180,7 +172,10 @@ class HeadSeg():
 
                     x_batch = np.array(x_batch, np.float32) / 255.0
                     y_batch = np.array(y_batch, np.float32)
-                    yield x_batch, [y_batch, y_batch]
+                    if USE_REFINE_NET:
+                        yield x_batch, [y_batch, y_batch]
+                    else:
+                        yield x_batch, y_batch
 
 
         # opt = optimizers.SGD(lr=self.learn_rate, momentum=0.9)
@@ -205,12 +200,19 @@ class HeadSeg():
         # opt = optimizers.RMSprop(lr=0.0001)
         opt = optimizers.RMSpropAccum(lr=1e-4, accumulator=16)
 
-        self.model.compile(optimizer=opt,
-                           loss=bce_dice_loss,
-                           loss_weights=[1, 1],
-                           metrics=[dice_score]
-                           # metrics=[dice_score, weightedLoss, bce_dice_loss]
-                           )
+        if USE_REFINE_NET:
+            self.model.compile(optimizer=opt,
+                               loss=bce_dice_loss,
+                               loss_weights=[1, 1],
+                               metrics=[dice_score]
+                               # metrics=[dice_score, weightedLoss, bce_dice_loss]
+                               )
+        else:
+            self.model.compile(optimizer=opt,
+                               loss=bce_dice_loss,
+                               metrics=[dice_score]
+                               # metrics=[dice_score, weightedLoss, bce_dice_loss]
+                               )
 
         self.model.fit_generator(
             generator=train_generator(),
@@ -229,22 +231,6 @@ class HeadSeg():
             callbacks=callbacks,
             validation_data=valid_generator(),
             validation_steps=math.ceil(nValid / float(self.batch_size)))
-
-
-        # opt  = optimizers.SGD(lr=0.1*self.learn_rate, momentum=0.9)
-        # self.model.compile(loss=['binary_crossentropy', dice_loss], # We NEED binary here, since categorical_crossentropy l1 norms the output before calculating loss.
-        #                   optimizer=opt,
-        #                   metrics=[dice_score])
-        #
-        #
-        # self.model.fit_generator(
-        #     generator=train_generator(),
-        #     steps_per_epoch=math.ceil(nTrain / float(self.batch_size)),
-        #     epochs=self.epochs - 15,
-        #     verbose=2,
-        #     callbacks=callbacks,
-        #     validation_data=valid_generator(),
-        #     validation_steps=math.ceil(nValid / float(self.batch_size)))
 
     def test(self):
         if not os.path.isfile(self.model_path):
@@ -346,7 +332,10 @@ class HeadSeg():
 
             x_batch = np.array(x_batch, np.float32) / 255.0
 
-            p_test = self.model.predict(x_batch, batch_size=self.batch_size)[-1]
+            p_test = self.model.predict(x_batch, batch_size=self.batch_size)
+
+            if USE_REFINE_NET:
+                p_test = p_test[-1]
 
             if self.direct_result:
                 result, probs = get_final_mask(p_test, self.threshold, apply_crf=self.apply_crf, images=images)
@@ -355,8 +344,6 @@ class HeadSeg():
                 result = get_result(avg_p_test, 0)
 
             for i in range(len(y_batch)):
-                print(y_batch[i].shape, y_batch[i].dtype)
-                print(result[i].shape, result[i].dtype)
                 IoU += numpy_dice_score(y_batch[i], result[i]) / nTest
 
             str.extend(map(run_length_encode, result))
@@ -365,15 +352,11 @@ class HeadSeg():
             if not os.path.exists(OUTPUT_PATH):
                 os.mkdir(OUTPUT_PATH)
 
-            # for i in range(start, end):
-            #     img_path = ids_test[i][ids_test[i].rfind('/')+1:]
-            #     cv2.imwrite(OUTPUT_PATH + '{}'.format(img_path), (255 * probs[i-start]).astype(np.uint8))
             for i in range(start, end):
                 image_path, mask_path = ids_test[i]
                 img_path = image_path[image_path.rfind('/')+1:]
                 res_mask = (255 * result[i-start]).astype(np.uint8)
                 res_mask = np.dstack((res_mask,)*3)
-                # print(res_mask.shape)
                 cv2.imwrite(OUTPUT_PATH + '{}'.format(img_path), res_mask)
 
         print('IoU: {}'.format(IoU))
@@ -383,7 +366,7 @@ class HeadSeg():
 
 
 if __name__ == "__main__":
-    ccs = HeadSeg(input_width=576, input_height=768, train=True)
-
-    ccs.train()
+    ccs = HeadSeg(input_width=512, input_height=512, train=IS_TRAIN)
+    if IS_TRAIN:
+        ccs.train()
     ccs.test_one(list_file=TEST_DATASET)
