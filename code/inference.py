@@ -88,7 +88,7 @@ if __name__ == '__main__':
         # from scipy.misc import imsave
         # imsave('../' + ids_test[i], res_4chan)
         pos = ids_test[i].rfind('.')
-        # cv2.imwrite('../'+ids_test[i][:pos]+'.png', res_4chan)
+        cv2.imwrite('../'+ids_test[i][:pos]+'.png', res_4chan)
     subprocess.call([
         'ffmpeg', '-framerate', '4', '-i', '../output/tmp/%d.jpg', '-r', '30', '-pix_fmt', 'yuv420p', '../headseg_demo.mp4'
     ])
