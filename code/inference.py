@@ -3,9 +3,8 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import subprocess
+from constants import *
 
-INPUT_WIDTH = 512 # 576 # 512
-INPUT_HEIGHT = 512 # 768 # 512
 def init(model_file, weight_file):
     '''
     load model from file
@@ -33,7 +32,8 @@ def inference(image, model):
 
 
 if __name__ == '__main__':
-    model = init('../weights/koutou_tf_0211/model.json', '../weights/koutou_tf_0211/head-segmentation-model.h5')
+    model = init('../weights/{}/model.json'.format(MODEL_DIR),
+                 '../weights/{}/head-segmentation-model.h5'.format(MODEL_DIR))
     list_file = '../input/expo.txt'
     folder_dir = ''
     # list_file = '../input/kk0915.txt'
@@ -50,9 +50,7 @@ if __name__ == '__main__':
         img = cv2.resize(raw_img, (INPUT_WIDTH, INPUT_HEIGHT), interpolation=cv2.INTER_LINEAR)
         img = img.astype(np.float32) / 255.0
         img = img.reshape(1, *img.shape)
-        pred = inference(img, model)[0]
-        # print pred.shape
-        # print pred.dtype
+        pred = inference(img, model)
 
         prob = cv2.resize(pred, (W, H))
 
