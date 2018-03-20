@@ -1,11 +1,21 @@
+from enum import Enum
+class MODEL(Enum):
+    UNET = 0
+    TIRAMISUNET = 1
+    REFINED_UNET = 2
+    PSPNET2 = 3
+
 INPUT_PATH = '../input/'
 OUTPUT_PATH = '../output/test-result/'
 
-##------------------------------------------------
+##------------------- Setup InputSize ----------------------------
 INPUT_WIDTH = 512 # 576 # 512
 INPUT_HEIGHT = 512 # 768 # 512
 
-##-------------------------------------------------
+##-------------------- Configure #Classes ------------------------
+NUM_CLASS = 2 # background / foreground till now
+
+##------------------- Setup Dataset ------------------------------
 # train/test dataset for head segmentation
 TRAIN_DATASET = "trainSet.txt"
 TEST_DATASET = "testSet.txt"
@@ -14,17 +24,25 @@ TEST_DATASET = "testSet.txt"
 # TRAIN_DATASET = "trainSet-0.9-v2.3u.txt"
 # TEST_DATASET = "testSet-0.9-v2.3u.txt"
 
-## ----------------- test unet ---------------------
+## ----------------- Setup Model ----------------------------------
+## ----------------- refinenet -----------------
 USE_REFINE_NET = False
-MODEL_DIR = "koutou_tf_1218"
+MODEL_DIR = "koutou_tf_1803"
+MODEL_TYPE = MODEL.PSPNET2
+## ----------------- unet ---------------------
+# USE_REFINE_NET = False
+# MODEL_DIR = "koutou_tf_1218"
+# MODEL_TYPE = MODEL.UNET
 
-# ##----------------- test tiramisuNet --------------
+# ##----------------- tiramisuNet --------------
 # USE_REFINE_NET = False
 # MODEL_DIR = "koutou_tf_180123"
+# MODEL_TYPE = MODEL.TIRAMISUNET
 
-## ----------------- test unet + refinenet ---------
+## ----------------- refinenet -----------------
 # USE_REFINE_NET = True
 # MODEL_DIR = "koutou_tf_180211"
+# MODEL_TYPE = MODEL.REFINED_UNET
 
-## -------------------------------------------------
-IS_TRAIN = False
+## ---------- Configure train + test or test only ------------------
+IS_TRAIN = True

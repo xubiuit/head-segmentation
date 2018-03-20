@@ -17,7 +17,6 @@ from keras.models import model_from_json
 from sklearn.model_selection import KFold
 from constants import *
 from helpers import *
-import newnet
 import math
 import glob
 import random
@@ -37,12 +36,17 @@ class HeadSeg():
         self.epochs = epochs
         self.learn_rate = learn_rate
         self.nb_classes = nb_classes
-        # self.model = newnet.fcn_32s(input_dim, nb_classes)
-        self.model = unet.get_unet_512(input_shape=(self.input_height, self.input_width, 3))
-        # self.model = tiramisunet.get_tiramisunet(input_shape=(self.input_height, self.input_width, 3))
-        # self.model = pspnet.pspnet2(input_shape=(self.input_height, self.input_width, 3))
+
+        if MODEL_TYPE == MODEL.UNET or MODEL_TYPE == MODEL.REFINED_UNET:
+            self.model = unet.get_unet_512(input_shape=(self.input_height, self.input_width, 3))
+
+        elif MODEL_TYPE == MODEL.TIRAMISUNET:
+            self.model = tiramisunet.get_tiramisunet(input_shape=(self.input_height, self.input_width, 3))
+
+        elif MODEL_TYPE == MODEL.PSPNET2:
+            self.model = pspnet.pspnet2(input_shape=(self.input_height, self.input_width, 3))
+
         self.model.summary()
-        # self.model =pspnet.pspnet2(input_shape=(self.input_height, self.input_width, 3))
         if train:
             self.net_path = '../weights/model.json'
             self.model_path = '../weights/head-segmentation-model.h5'
@@ -54,13 +58,12 @@ class HeadSeg():
 
         self.threshold = 0.5
         self.direct_result = True
-        # self.nAug = 2 # incl. horizon mirror augmentation
-        # self.nTTA = 1 # incl. horizon mirror augmentation
         self.load_data()
         self.factor = 1
         self.train_with_all = False
         self.apply_crf = False
 
+    # Load Data & Make Train/Validation Split
     def load_data(self):
         ids_train = []
         with open(INPUT_PATH + TRAIN_DATASET, 'r') as f:
@@ -68,25 +71,8 @@ class HeadSeg():
                 ids_train.append(line.strip().split())
         self.ids_train_split, self.ids_valid_split = train_test_split(ids_train, test_size=0.15, random_state=42)
 
-        # index = list(range(len(self.train_imgs)))
-        # random.shuffle(index)
-        # self.train_masks = self.train_masks[index]
-        # self.train_masks = self.train_masks[index]
 
     def train(self):
-
-        # train_datagen = ImageDataGenerator(
-        #     rescale=1. / 255,
-        #     zoom_range=0.15,
-        #     rotation_range=360,
-        #     width_shift_range=0.1,
-        #     height_shift_range=0.1
-        # )
-        # val_datagen = ImageDataGenerator(rescale=1. / 255)
-
-        # train_datagen.fit(x_train, augment=True, rounds=2, seed=1)
-        # train_generator = train_datagen.flow(x_train[train_index], y_train[train_index], shuffle=True, batch_size=batch_size, seed=int(time.time()))
-        # val_generator = val_datagen.flow(x_train[test_index], y_train[test_index], shuffle=False, batch_size=batch_size)
 
         try:
             self.model.load_weights(self.model_path)
@@ -97,6 +83,7 @@ class HeadSeg():
         print('Training on {} samples'.format(nTrain))
         print('Validating on {} samples'.format(nValid))
 
+        ## Prepare Data
         def train_generator():
             while True:
                 for start in range(0, nTrain, self.batch_size):
@@ -106,17 +93,10 @@ class HeadSeg():
                     ids_train_batch = self.ids_train_split[start:end]
 
                     for img_path, mask_path in ids_train_batch:
-                        # j = np.random.randint(self.nAug)
                         img = cv2.imread(img_path)
                         img = cv2.resize(img, (self.input_width, self.input_height), interpolation=cv2.INTER_LINEAR)
-                        # img = transformations2(img, j)
                         mask = cv2.imread(mask_path)[...,0]
                         mask = cv2.resize(mask, (self.input_width, self.input_height), interpolation=cv2.INTER_LINEAR)
-                        # mask = transformations2(mask, j)
-                        # img = randomHueSaturationValue(img,
-                        #                                hue_shift_limit=(-50, 50),
-                        #                                sat_shift_limit=(-5, 5),
-                        #                                val_shift_limit=(-15, 15))
                         img, mask = randomShiftScaleRotate(img, mask,
                                                            shift_limit=(-0.0625, 0.0625),
                                                            scale_limit=(-0.125, 0.125),
@@ -177,12 +157,6 @@ class HeadSeg():
                     else:
                         yield x_batch, y_batch
 
-
-        # opt = optimizers.SGD(lr=self.learn_rate, momentum=0.9)
-        # self.model.compile(loss='binary_crossentropy', # We NEED binary here, since categorical_crossentropy l1 norms the output before calculating loss.
-        #                   optimizer=opt,
-        #                   metrics=[dice_loss])
-
         callbacks = [EarlyStopping(monitor='val_loss',
                                        patience=6,
                                        verbose=1,
@@ -197,6 +171,7 @@ class HeadSeg():
                                          save_weights_only=True),
                     TensorBoard(log_dir='logs')]
 
+        # Set Training Options
         # opt = optimizers.RMSprop(lr=0.0001)
         opt = optimizers.RMSpropAccum(lr=1e-4, accumulator=16)
 
@@ -205,13 +180,11 @@ class HeadSeg():
                                loss=bce_dice_loss,
                                loss_weights=[1, 1],
                                metrics=[dice_score]
-                               # metrics=[dice_score, weightedLoss, bce_dice_loss]
                                )
         else:
             self.model.compile(optimizer=opt,
                                loss=bce_dice_loss,
                                metrics=[dice_score]
-                               # metrics=[dice_score, weightedLoss, bce_dice_loss]
                                )
 
         self.model.fit_generator(
@@ -231,62 +204,6 @@ class HeadSeg():
             callbacks=callbacks,
             validation_data=valid_generator(),
             validation_steps=math.ceil(nValid / float(self.batch_size)))
-
-    def test(self):
-        if not os.path.isfile(self.model_path):
-            raise RuntimeError("No model found.")
-        self.model.load_weights(self.model_path)
-
-        df_test = pd.read_csv(INPUT_PATH + 'sample_submission.csv')
-        test_imgs = np.array(df_test['img'])
-
-        nTest = len(test_imgs)
-        print('Testing on {} samples'.format(nTest))
-
-        test_splits = 8  # Split test set (number of splits must be multiple of 2)
-        ids_test_splits = np.split(test_imgs, indices_or_sections=test_splits)
-
-        rles = []
-        split_count = 0
-        for test_x in ids_test_splits:
-            split_count += 1
-            nTestBatch = len(test_x)
-            def test_generator():
-                while True:
-                    for start in range(0, nTestBatch, self.batch_size):
-                        x_batch = []
-                        end = min(start + self.batch_size, nTestBatch)
-
-                        for i in range(start, end):
-                            img = cv2.imread(INPUT_PATH + 'test/{}'.format(test_x[i]))
-                            img = cv2.resize(img, (self.input_width, self.input_height), interpolation=cv2.INTER_LINEAR)
-                            x_batch.append(img)
-                        x_batch = np.array(x_batch, np.float32) / 255.0
-                        yield x_batch
-
-            print("Predicting on {} samples (split {}/{})".format(nTestBatch, split_count, test_splits))
-            preds = self.model.predict_generator(generator=test_generator(),
-                                                 steps=math.ceil(nTestBatch / float(self.batch_size)))
-            preds = np.squeeze(preds, axis=3)
-
-            print("Generating masks...")
-            result = []
-            for pred in tqdm(preds, miniters=1000):
-                prob = cv2.resize(pred, (ORIG_WIDTH, ORIG_HEIGHT))
-                mask = prob > self.threshold
-                rle = run_length_encode(mask)
-                rles.append(rle)
-                result.append(mask)
-
-            # # save predicted masks
-            if not os.path.exists(OUTPUT_PATH):
-                os.mkdir(OUTPUT_PATH)
-
-            for i in range(nTestBatch):
-                cv2.imwrite(OUTPUT_PATH + '{}'.format(test_x[i]), (255 * result[i]).astype(np.uint8))
-        print("Generating submission file...")
-        df_test['rle_mask'] = rles
-        df_test.to_csv('../submit/submission.csv.gz', index=False, compression='gzip')
 
     def test_one(self, list_file='lfw-deepfunneled.txt'):
         if not os.path.isfile(self.net_path) or not os.path.isfile(self.model_path):
@@ -327,7 +244,6 @@ class HeadSeg():
                 images.append(raw_img)
 
                 mask = cv2.imread(mask_path)[..., 0]
-                # mask = cv2.resize(mask, (self.input_width, self.input_height), interpolation=cv2.INTER_LINEAR)
                 y_batch.append(mask)
 
             x_batch = np.array(x_batch, np.float32) / 255.0
@@ -359,14 +275,11 @@ class HeadSeg():
                 res_mask = np.dstack((res_mask,)*3)
                 cv2.imwrite(OUTPUT_PATH + '{}'.format(img_path), res_mask)
 
-        print('IoU: {}'.format(IoU))
-        print("Generating submission file...")
-        df = pd.DataFrame({'img': ids_test, 'rle_mask': str})
-        df.to_csv('../submit/submission.csv.gz', index=False, compression='gzip')
+        print('mean IoU: {}'.format(IoU))
 
 
 if __name__ == "__main__":
-    ccs = HeadSeg(input_width=512, input_height=512, train=IS_TRAIN)
+    ccs = HeadSeg(input_width=INPUT_WIDTH, input_height=INPUT_HEIGHT, train=IS_TRAIN, nb_classes=NUM_CLASS)
     if IS_TRAIN:
         ccs.train()
     ccs.test_one(list_file=TEST_DATASET)

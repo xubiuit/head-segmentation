@@ -29,43 +29,14 @@ def denseCRF(image, final_probabilities):
     unary = np.ascontiguousarray(unary)
 
     d = dcrf.DenseCRF2D(image.shape[1], image.shape[0], 2)
-    # d = dcrf.DenseCRF(image.shape[0] * image.shape[1], 2)
 
     d.setUnaryEnergy(unary)
-
-
-    # # This potential penalizes small pieces of segmentation that are
-    # # spatially isolated -- enforces more spatially consistent segmentations
-    # feats = create_pairwise_gaussian(sdims=(3, 3), shape=image.shape[:2])
-    #
-    # d.addPairwiseEnergy(feats, compat=3,
-    #                     kernel=dcrf.DIAG_KERNEL,
-    #                     normalization=dcrf.NORMALIZE_SYMMETRIC)
-    #
-    # # This creates the color-dependent features --
-    # # because the segmentation that we get from CNN are too coarse
-    # # and we can use local color features to refine them
-    # feats = create_pairwise_bilateral(sdims=(80, 80), schan=(13, 13, 13),
-    #                                    img=image, chdim=2)
-    #
-    # d.addPairwiseEnergy(feats, compat=10,
-    #                      kernel=dcrf.DIAG_KERNEL,
-    #                      normalization=dcrf.NORMALIZE_SYMMETRIC)
-
     d.addPairwiseGaussian(sxy=3, compat=3)
     d.addPairwiseBilateral(sxy=80, srgb=13, rgbim=image, compat=10)
     Q = d.inference(50)
 
     res = np.argmax(Q, axis=0).reshape((image.shape[0], image.shape[1]))
 
-    # cmap = plt.get_cmap('bwr')
-    #
-    # f, (ax1, ax2) = plt.subplots(1, 2, sharey=True)
-    # ax1.imshow(res, vmax=1.5, vmin=-0.4, cmap=cmap)
-    # ax1.set_title('Segmentation with CRF post-processing')
-    # probability_graph = ax2.imshow(np.dstack((final_probabilities[:,:,0],)*3))
-    # ax2.set_title('Original Prediction Mask')
-    # plt.show()
     return res,Q
 
 
@@ -110,10 +81,6 @@ def main():
         r_channel, g_channel, b_channel = cv2.split(img)
         img_rgba = cv2.merge((r_channel, g_channel, b_channel, a*255))
         cv2.imwrite('{}_crf.png'.format(img_path[:img_path.find('.')]), img_rgba)
-
-        # a = np.dstack((a,)*3)
-        # plt.imshow(a*img)
-        # cv2.imwrite('{}_crf.png'.format(img_path[:img_path.find('.')]), (a>0.1)*img)
 
         cv2.imwrite('{}_crf_qtsu.png'.format(img_path[:img_path.find('.')]), cropHead(Q, img))
 
