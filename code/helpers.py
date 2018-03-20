@@ -23,17 +23,6 @@ def comp_mean(imglist):
         mean += np.mean(np.mean(img, axis=0), axis=0)
     return mean/len(imglist)
 
-def load_param():
-
-    thresh = [[0.03, 0.03, 0.05, 0.07, 0.03, 0.02, 0.05, 0.03, 0.05, 0.05, 0.04, 0.03, 0.05, 0.1, 0.04, 0.04, 0.06],
-     [0.05, 0.03, 0.09, 0.08, 0.03, 0.02, 0.05, 0.08, 0.04, 0.05, 0.02, 0.03, 0.03, 0.07, 0.04, 0.06, 0.05],
-     [0.04, 0.03, 0.05, 0.06, 0.02, 0.04, 0.05, 0.05, 0.03, 0.05, 0.04, 0.03, 0.03, 0.11, 0.04, 0.05, 0.06],
-     [0.02, 0.03, 0.06, 0.1, 0.03, 0.01, 0.06, 0.05, 0.04, 0.1, 0.05, 0.03, 0.03, 0.1, 0.04, 0.05, 0.1],
-     [0.04, 0.03, 0.04, 0.06, 0.03, 0.03, 0.05, 0.09, 0.03, 0.07, 0.07, 0.04, 0.04, 0.08, 0.03, 0.06, 0.09]]
-    val_score = 0.93065441478548683
-
-    return thresh, val_score
-
 def find_f_measure_threshold2(probs, labels, num_iters=100, seed=0.21):
     _, num_classes = labels.shape[0:2]
     best_thresholds = [seed] * num_classes
@@ -168,22 +157,6 @@ def randomGammaCorrection(image):
     return image
 
 
-# def rle(img):
-#     '''
-#     img: numpy array, 1 - mask, 0 - background
-#     Returns run length as string formated
-#     '''
-#     bytes = np.where(img.flatten() == 1)[0]
-#     runs = []
-#     prev = -2
-#     for b in bytes:
-#         if (b > prev + 1): runs.extend((b + 1, 0))
-#         runs[-1] += 1
-#         prev = b
-#
-#     return ' '.join([str(i) for i in runs])
-
-# https://www.kaggle.com/stainsby/fast-tested-rle
 def run_length_encode(mask):
     '''
     img: numpy array, 1 - mask, 0 - background
@@ -195,20 +168,6 @@ def run_length_encode(mask):
     rle = ' '.join([str(r) for r in runs])
     return rle
 
-
-# def dice(im1, im2, empty_score=1.0):
-#     im1 = im1.astype(np.bool)
-#     im2 = im2.astype(np.bool)
-#
-#     if im1.shape != im2.shape:
-#         raise ValueError("Shape mismatch: im1 and im2 must have the same shape.")
-#
-#     im_sum = im1.sum() + im2.sum()
-#     if im_sum == 0:
-#         return empty_score
-#
-#     intersection = np.logical_and(im1, im2)
-#     return 2. * intersection.sum() / im_sum
 
 def dice_score(y_true, y_pred):
     smooth = 1.
@@ -241,11 +200,6 @@ def weightedSoftDiceLoss(y_true, y_pred, weights):
     return 1 - (2. * intersection + smooth) / (K.sum(w2*y_true_f) + K.sum(w2*y_pred_f) + smooth)
 
 def weightedLoss(y_true, y_pred):
-    # compute weights
-    # a = cv2.blur(y_true, (11,11))
-    # ind = (a > 0.01) * (a < 0.99)
-    # ind = ind.astype(np.float32)
-    # weights = np.ones(a.shape)
     a = K.pool2d(y_true, (11,11), strides=(1, 1), padding='same', data_format=None, pool_mode='avg')
     ind = K.cast(K.greater(a, 0.01), dtype='float32') * K.cast(K.less(a, 0.99), dtype='float32')
 
@@ -327,52 +281,12 @@ def denseCRF(image, final_probabilities):
 
     d.setUnaryEnergy(unary)
 
-
-    # # This potential penalizes small pieces of segmentation that are
-    # # spatially isolated -- enforces more spatially consistent segmentations
-    # feats = create_pairwise_gaussian(sdims=(3, 3), shape=image.shape[:2])
-    #
-    # d.addPairwiseEnergy(feats, compat=3,
-    #                     kernel=dcrf.DIAG_KERNEL,
-    #                     normalization=dcrf.NORMALIZE_SYMMETRIC)
-    #
-    # # This creates the color-dependent features --
-    # # because the segmentation that we get from CNN are too coarse
-    # # and we can use local color features to refine them
-    # feats = create_pairwise_bilateral(sdims=(80, 80), schan=(13, 13, 13),
-    #                                    img=image, chdim=2)
-    #
-    # d.addPairwiseEnergy(feats, compat=10,
-    #                      kernel=dcrf.DIAG_KERNEL,
-    #                      normalization=dcrf.NORMALIZE_SYMMETRIC)
-
-    # d.addPairwiseGaussian(sxy=3, compat=3)
     d.addPairwiseBilateral(sxy=50, srgb=13, rgbim=image, compat=3)
     Q = d.inference(5)
 
     res = np.argmax(Q, axis=0).reshape((image.shape[0], image.shape[1]))
 
-    # cmap = plt.get_cmap('bwr')
-    #
-    # f, (ax1, ax2) = plt.subplots(1, 2, sharey=True)
-    # ax1.imshow(res, vmax=1.5, vmin=-0.4, cmap=cmap)
-    # ax1.set_title('Segmentation with CRF post-processing')
-    # probability_graph = ax2.imshow(np.dstack((final_probabilities[:,:,0],)*3))
-    # ax2.set_title('Original Prediction Mask')
-    # plt.show()
     return res,Q
-
-def draw(img, mask):
-    img_masked = cv2.bitwise_and(img, img, mask=mask)
-
-    print("Image shape: {} | image type: {} | mask shape: {} | mask type: {}".format(img.shape, img.dtype, mask.shape, mask.dtype) )
-
-    plt.subplot(131)
-    plt.imshow(img)
-    plt.subplot(132)
-    plt.imshow(mask)
-    plt.subplot(133)
-    plt.imshow(img_masked)
 
 
 def numpy_dice_score(y_true, y_pred):
