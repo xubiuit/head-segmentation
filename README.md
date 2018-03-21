@@ -4,7 +4,7 @@ Find the demo here: https://www.youtube.com/watch?v=sOOAfrPwrNQ&t=1s
 
 ## update
 pspnet2
-
+- train with 5780 samples
 - IoU is 0.9236 on kk-252 testset
 
 0915
@@ -101,3 +101,17 @@ Epoch 30/100
 - 4803s - loss: 0.1698 - conv2d_66_loss: 0.0865 - average_1_loss: 0.0833 - val_loss: 0.1561 - val_conv2d_66_loss: 0.0790 - val_average_1_loss: 0.0771
 ```
 - IoU is 0.972961458863 after 1st Unet stage, and 0.973500913981 after 2nd refineNet stage on head-467 testset
+
+0321 (v3.0)
+- clean code
+- retrain pspnet2 with 9979 samples
+- training record:
+```
+Epoch 26/100
+ - 671s - loss: 0.1303 - dice_score: 0.9447 - val_loss: 0.1190 - val_dice_score: 0.9451
+ ...
+ Epoch 32/100
+ - 673s - loss: 0.1311 - dice_score: 0.9449 - val_loss: 0.1198 - val_dice_score: 0.9456
+Epoch 00032: early stopping
+```
+- IoU: 0.954327620642 on head-467 testset
