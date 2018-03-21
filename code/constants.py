@@ -25,9 +25,9 @@ TEST_DATASET = "testSet.txt"
 # TEST_DATASET = "testSet-0.9-v2.3u.txt"
 
 ## ----------------- Setup Model ----------------------------------
-## ----------------- refinenet -----------------
+## ----------------- pspnet2 -----------------
 USE_REFINE_NET = False
-MODEL_DIR = "koutou_tf_1803"
+MODEL_DIR = "koutou_tf_180321"
 MODEL_TYPE = MODEL.PSPNET2
 ## ----------------- unet ---------------------
 # USE_REFINE_NET = False
