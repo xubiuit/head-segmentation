@@ -1,5 +1,8 @@
 import cv2, os
 import numpy as np
+import shutil
+
+np.set_printoptions(threshold='nan')
 
 img = cv2.imread('/home/jin/Desktop/0a6df7a3cf48030f25b87d9a2ad9f9b5_mask.png')
 
@@ -14,11 +17,26 @@ def getList(path, suffix_tuple = ('jpg', 'png')):
     return file_list
 
 def mask_process(masks_folder):
-    mask_files = getList(masks_folder)
+    img_files = getList(masks_folder, suffix_tuple='jpg')
+    for img_file in img_files:
+        os.remove(img_file)
+    mask_files = getList(masks_folder, suffix_tuple='png')
+    cnt = 0
     for mask_file in mask_files:
+        cnt += 1
         img = cv2.imread(mask_file)
+        if np.max(img) < 240:
+            continue
         res = (img >= 100).astype(np.uint8)
+        assert(np.max(res) == 1)
+        os.remove(mask_file)
+        if mask_file.find('_mask.png') == -1:
+            pos = mask_file.rfind('.png')
+            mask_file = mask_file[:pos] + '_mask.png'
         cv2.imwrite(mask_file, res)
+
+    print(len(mask_files))
+    print(cnt)
 
 def generate_list(images_folder, masks_folder):
     mask_files = getList(masks_folder)
@@ -33,7 +51,8 @@ if __name__ == '__main__':
     # images_folder = '/home/jin/VSS/koutou/data/kk/image'
     # generate_list(images_folder, masks_folder)
 
-    masks_folder = '../input/data/20171101-20171108-mask'
+    # masks_folder = '../input/data/20171101-20171108-mask'
+    masks_folder = '../input/head/20180322-mask'
     mask_process(masks_folder)
 
     # images_folder = '../input/20171107/src201709'
@@ -42,7 +61,6 @@ if __name__ == '__main__':
 
 
 def kk_65mask():
-    import shutil
     path = '/home/jin/VSS/koutou/data/MASK_65'
     path1 = '/home/jin/VSS/koutou/data/kk/mask/20170915-20170926_all'
     path2 = '/home/jin/VSS/koutou/data/kk/mask/20170927-20170929_all'

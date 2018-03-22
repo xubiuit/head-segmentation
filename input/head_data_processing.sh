@@ -4,4 +4,4 @@
 
 python generate_imagelist.py  ./head head_imagelist.txt
 wc -l head_imagelist.txt
-python split_train_test_list.py head_imagelist.txt 0.9 v2.4
+python split_train_test_list.py head_imagelist.txt 0.9 v3.0
