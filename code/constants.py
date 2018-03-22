@@ -26,13 +26,13 @@ TEST_DATASET = "testSet.txt"
 
 ## ----------------- Setup Model ----------------------------------
 ## ----------------- pspnet2 -----------------
-USE_REFINE_NET = False
-MODEL_DIR = "koutou_tf_180321"
-MODEL_TYPE = MODEL.PSPNET2
-## ----------------- unet ---------------------
 # USE_REFINE_NET = False
-# MODEL_DIR = "koutou_tf_1218"
-# MODEL_TYPE = MODEL.UNET
+# MODEL_DIR = "koutou_tf_180321"
+# MODEL_TYPE = MODEL.PSPNET2
+## ----------------- unet ---------------------
+USE_REFINE_NET = False
+MODEL_DIR = "koutou_tf_1218"
+MODEL_TYPE = MODEL.UNET
 
 # ##----------------- tiramisuNet --------------
 # USE_REFINE_NET = False
