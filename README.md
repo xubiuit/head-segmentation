@@ -102,7 +102,7 @@ Epoch 30/100
 ```
 - IoU is 0.972961458863 after 1st Unet stage, and 0.973500913981 after 2nd refineNet stage on head-467 testset
 
-0321 (v3.0)
+0321 (v2.7)
 - clean code
 - retrain pspnet2 with 9979 samples
 - training record:
@@ -117,5 +117,5 @@ Epoch 00032: early stopping
 - IoU: 0.954327620642 on head-467 testset
 
 0323 (v3.0)
-- add more data to retrain 1218's UNet
+- add more data (5780+8387=14167 train & validation images) to retrain 1218's UNet
 - IoU: 0.974027543933 on head-932 testset
