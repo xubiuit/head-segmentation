@@ -31,7 +31,7 @@ TEST_DATASET = "testSet.txt"
 # MODEL_TYPE = MODEL.PSPNET2
 ## ----------------- unet ---------------------
 USE_REFINE_NET = False
-MODEL_DIR = "koutou_tf_1218"
+MODEL_DIR = "koutou_tf_180323"
 MODEL_TYPE = MODEL.UNET
 
 # ##----------------- tiramisuNet --------------
