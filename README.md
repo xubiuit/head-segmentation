@@ -115,3 +115,7 @@ Epoch 26/100
 Epoch 00032: early stopping
 ```
 - IoU: 0.954327620642 on head-467 testset
+
+0323 (v3.0)
+- add more data to retrain 1218's UNet
+- IoU: 0.974027543933
